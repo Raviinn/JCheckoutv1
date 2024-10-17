@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 12f;
+        speed = 3f;
         gravity = -9.8f;
     }
 
