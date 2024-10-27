@@ -341,7 +341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8279927920996329896}
   m_Layer: 0
-  m_Name: Energy Drink (1)
+  m_Name: Energy Drink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

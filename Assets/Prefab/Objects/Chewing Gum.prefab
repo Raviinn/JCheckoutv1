@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8862784007882750812}
   - component: {fileID: 9017194754581312779}
   m_Layer: 0
-  m_Name: Gum
+  m_Name: Chewing Gum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
