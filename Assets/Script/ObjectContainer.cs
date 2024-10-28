@@ -29,17 +29,30 @@ public class ObjectContainer : MonoBehaviour
     }
 
 
-    public Vector3 ChkContainerObjPos()
+    public Vector3? ChkContainerObjPos()
     {
-        for (int i = 0; i < item.Length; i++) {
-            if (!item[i].activeSelf) {
+        bool isAvailable = false; // Declare isAvailable to check item availability
+        int objIndex = -1; // Initialize objIndex to -1 for safety
+
+        for (int i = 0; i < item.Length; i++)
+        {
+            if (!item[i].activeSelf)
+            {
                 item[i].SetActive(true);
                 isAvailable = true;
                 objIndex = i;
                 break;
             }
         }
-        return (item[objIndex].transform.position);
+
+        // If no available item is found, return null
+        if (!isAvailable || objIndex == -1)
+        {
+            return null; // Returning null if no active items
+        }
+
+        // Return the position of the active item
+        return item[objIndex].transform.position;
     }
 
     public void RemoveObj(Vector3 position)

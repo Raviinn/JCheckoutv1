@@ -13,11 +13,12 @@ public class ObjectGrabbable : MonoBehaviour
 
     public Material highlightMaterial;
     private Material originalMaterial;
-    private Vector3 getPosition;
+    private Vector3? getPosition;
     public bool isInContainer;
     private Vector3 originalVelocity, originalAngularVelocity;
     private Material[] getMaterials;
     public GameObject Mesh;
+    public bool isContainer;
 
     public bool isInCrate;
     public GameObject obj;
@@ -74,7 +75,7 @@ public class ObjectGrabbable : MonoBehaviour
     {
         this.objContainer = objContainer;
         getPosition = this.objContainer.ChkContainerObjPos();
-        obj.transform.position = getPosition;
+        obj.transform.position = getPosition.Value;
         obj.transform.rotation = Quaternion.Euler(0, 0, 0);
         this.grabPointTransform = null;
         rb.useGravity = false;
@@ -84,7 +85,7 @@ public class ObjectGrabbable : MonoBehaviour
     public void PickupFromContainer(Transform grabPointTransform)
     {
         this .grabPointTransform = grabPointTransform;
-        this.objContainer.RemoveObj(getPosition); 
+        this.objContainer.RemoveObj(getPosition.Value); 
     }
 
     public void HighlightObject()
@@ -155,6 +156,28 @@ public class ObjectGrabbable : MonoBehaviour
         {
             Debug.LogWarning("Original materials are not stored; cannot remove highlight.");
         }
+    }
+
+    public void PlaceCrateItemsToContainer(ObjectContainer objectContainer)
+    {
+        this.objContainer = objectContainer;
+        
+        //Get and store all objects inside container
+        for (int num = 0; num < 6; num++)
+        {
+            getPosition = this.objContainer.ChkContainerObjPos();
+            if (getPosition == null)
+            {
+                break;
+            }
+            else
+                obj.transform.Find($"Pos{num + 1}").GetChild(0).transform.position = getPosition.Value;
+                obj.transform.Find($"Pos{num + 1}").GetChild(0).transform.rotation = Quaternion.Euler(0, 0, 0);
+                obj.transform.Find($"Pos{num + 1}").GetChild(0).GetComponent<Rigidbody>().useGravity = false;
+                obj.transform.Find($"Pos{num + 1}").GetChild(0).GetComponent<Rigidbody>().isKinematic = true;
+                Debug.Log(obj.transform.Find($"Pos{num + 1}").name);
+        }
+        //this.grabPointTransform = null;
     }
 }
 

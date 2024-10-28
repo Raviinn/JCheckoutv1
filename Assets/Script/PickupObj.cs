@@ -15,6 +15,7 @@ public class PickupObj : MonoBehaviour
     private ObjectContainer currentHighlightedObjectContainer;
     private CrateManager crateManager;
     private bool isGrabbingCrate;
+    public bool isContainer;
     void Start()
     {
         pickupDistance = 7f;
@@ -36,7 +37,7 @@ public class PickupObj : MonoBehaviour
                 if (Physics.Raycast(playerCamera.position, playerCamera.forward,
                     out RaycastHit raycastHit, pickupDistance, pickupLayerMask))
                 {
-                    if (raycastHit.transform.TryGetComponent(out objectGrabbable))
+                    if (raycastHit.transform.TryGetComponent(out objectGrabbable) && !objectGrabbable.isContainer)
                     {
                         if (objectGrabbable.isInContainer)
                         { 
@@ -49,9 +50,9 @@ public class PickupObj : MonoBehaviour
                         }
                         objectGrabbable.Grab(objectGrabPointTransform);
 
-                    }else if (raycastHit.transform.TryGetComponent(out crateManager))
+                    }else if (raycastHit.transform.TryGetComponent(out objectGrabbable) && objectGrabbable.isContainer)
                     {
-                        crateManager.Grab(objectGrabPointTransform);
+                        objectGrabbable.Grab(objectGrabPointTransform);
                         isGrabbingCrate = true;
                     }
                 }
@@ -59,25 +60,23 @@ public class PickupObj : MonoBehaviour
             else //Player has an object (DROP OBJECT)
             {
                 if (Physics.Raycast(playerCamera.position, playerCamera.forward,
-                    out RaycastHit raycastHit, pickupDistance, pickupLayerMask))
+                    out RaycastHit raycastHit, pickupDistance, pickupLayerMask)) // Place object in container
                 {
-                    if (raycastHit.transform.TryGetComponent(out objectContainer))
+                    if (raycastHit.transform.TryGetComponent(out objectContainer) && !isGrabbingCrate)
                     {
                         Debug.Log("Container");
                         objectGrabbable.PlaceObjToContainer(objectContainer);
                         objectGrabbable.isInContainer = true;
                         objectGrabbable.rb.isKinematic = true;
-                    } 
+                    }else if (raycastHit.transform.TryGetComponent(out objectContainer) && isGrabbingCrate)//Place objects in crate to conainer
+                    {
+                        Debug.Log("Grabbing Container");
+                        objectGrabbable.PlaceCrateItemsToContainer(objectContainer);
+
+                    }
                 }
 
-                if (isGrabbingCrate)
-                {
-                    crateManager.Drop();
-                    crateManager = null;
-                    isGrabbingCrate = false;
-                }
-
-                if (objectGrabbable.isInCrate)
+                if (objectGrabbable.isInCrate && !isGrabbingCrate)
                 {
                     objectGrabbable.rb.isKinematic = false;
                 }
