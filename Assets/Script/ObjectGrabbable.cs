@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -10,10 +11,13 @@ public class ObjectGrabbable : MonoBehaviour
     private Transform grabPointTransform, container;
     ObjectContainer objContainer;
 
-    public Material highlightMAterial;
+    public Material highlightMaterial;
     private Material originalMaterial;
     private Vector3 getPosition;
     public bool isInContainer;
+    private Vector3 originalVelocity, originalAngularVelocity;
+    private Material[] getMaterials;
+    public GameObject Mesh;
 
     public bool isInCrate;
     public GameObject obj;
@@ -21,7 +25,7 @@ public class ObjectGrabbable : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        originalMaterial = GetComponent<Renderer>().material;
+        //originalMaterial = GetComponent<Renderer>().material;
         isInContainer = false;
     }
 
@@ -34,6 +38,11 @@ public class ObjectGrabbable : MonoBehaviour
             Vector3 newPosition = Vector3.Lerp(transform.position, grabPointTransform.position, 
                 Time.deltaTime * lerpSpeed);
             rb.MovePosition(newPosition);
+            originalAngularVelocity = rb.angularVelocity;
+            originalVelocity = rb.velocity;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            transform.rotation = Camera.main.transform.rotation;
             rb.useGravity = false;
             RemoveHighlight();
         }
@@ -49,6 +58,8 @@ public class ObjectGrabbable : MonoBehaviour
     {  
         this.grabPointTransform = null;
         rb.useGravity = true;
+        rb.velocity = originalAngularVelocity;
+        rb.angularVelocity = originalVelocity;
     }
 
     public void Throw()
@@ -64,6 +75,7 @@ public class ObjectGrabbable : MonoBehaviour
         this.objContainer = objContainer;
         getPosition = this.objContainer.ChkContainerObjPos();
         obj.transform.position = getPosition;
+        obj.transform.rotation = Quaternion.Euler(0, 0, 0);
         this.grabPointTransform = null;
         rb.useGravity = false;
         rb.isKinematic = true;
@@ -77,11 +89,74 @@ public class ObjectGrabbable : MonoBehaviour
 
     public void HighlightObject()
     {
-        GetComponent<Renderer>().material = highlightMAterial;
+        // Get the MeshRenderer and its materials
+        MeshRenderer meshRenderer = Mesh.GetComponent<MeshRenderer>();
+        if (meshRenderer == null)
+        {
+            Debug.LogError("No MeshRenderer found on the specified Mesh GameObject.");
+            return;
+        }
+
+        Material[] materials = meshRenderer.materials;
+        //Debug.Log("Number of materials: " + materials.Length);
+
+        // Store original materials if not already done
+        if (getMaterials == null || getMaterials.Length == 0)
+        {
+            getMaterials = new Material[materials.Length];
+            for (int i = 0; i < materials.Length; i++)
+            {
+                getMaterials[i] = materials[i]; // Store original material
+                //Debug.Log("Original Material: " + getMaterials[i].name);
+            }
+        }
+
+        // Ensure highlightMaterial is assigned
+        if (highlightMaterial == null)
+        {
+            Debug.LogError("Highlight material is not assigned!");
+            return;
+        }
+
+        // Change to highlight material
+        for (int i = 0; i < materials.Length; i++)
+        {
+            materials[i] = highlightMaterial; // Set the material to highlight material
+            //Debug.Log("Highlighted Material: " + materials[i].name);
+        }
+
+        // Update the materials in the MeshRenderer
+        meshRenderer.materials = materials; // Update the materials
     }
 
     public void RemoveHighlight()
     {
-        GetComponent<Renderer>().material = originalMaterial;
+        MeshRenderer meshRenderer = Mesh.GetComponent<MeshRenderer>();
+        if (meshRenderer == null)
+        {
+            Debug.LogError("No MeshRenderer found on the specified Mesh GameObject.");
+            return;
+        }
+
+        if (getMaterials != null && getMaterials.Length > 0)
+        {
+            // Restore original materials
+            Material[] materials = meshRenderer.materials;
+            for (int i = 0; i < materials.Length; i++)
+            {
+                materials[i] = getMaterials[i]; // Set back to original material
+                //Debug.Log("Restored Material: " + materials[i].name);
+            }
+
+            // Update the materials in the MeshRenderer
+            meshRenderer.materials = materials; // Update the materials
+        }
+        else
+        {
+            Debug.LogWarning("Original materials are not stored; cannot remove highlight.");
+        }
     }
 }
+
+    
+

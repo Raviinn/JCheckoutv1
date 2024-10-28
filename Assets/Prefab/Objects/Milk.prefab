@@ -48,8 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  highlightMAterial: {fileID: 0}
+  highlightMaterial: {fileID: 2100000, guid: c2bfd8b80b137c8408cc6ad0994c8a81, type: 2}
   isInContainer: 0
+  Mesh: {fileID: 4440694478622343331}
   isInCrate: 0
   obj: {fileID: 5999106857167187373}
 --- !u!65 &8406305625759586503
@@ -172,5 +173,10 @@ PrefabInstance:
 --- !u!4 &1845784314830838217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2a4b12293134fb34c94ef1f030ee723d, type: 3}
+  m_PrefabInstance: {fileID: 2168257216980172322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4440694478622343331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2573726282031660673, guid: 2a4b12293134fb34c94ef1f030ee723d, type: 3}
   m_PrefabInstance: {fileID: 2168257216980172322}
   m_PrefabAsset: {fileID: 0}

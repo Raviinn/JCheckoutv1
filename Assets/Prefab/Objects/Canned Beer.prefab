@@ -75,8 +75,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6299869225695169756}
-  highlightMAterial: {fileID: 2100000, guid: c2bfd8b80b137c8408cc6ad0994c8a81, type: 2}
+  highlightMaterial: {fileID: 2100000, guid: c2bfd8b80b137c8408cc6ad0994c8a81, type: 2}
   isInContainer: 0
+  Mesh: {fileID: 4727883550705794723}
   isInCrate: 0
   obj: {fileID: 2432298029884907923}
 --- !u!65 &6494171336734037727

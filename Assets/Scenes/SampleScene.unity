@@ -1727,7 +1727,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5055282935304248362, guid: 6c8079f2e0333cc42a7fc682fce58f21, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6452487
+      value: 4.77
       objectReference: {fileID: 0}
     - target: {fileID: 5055282935304248362, guid: 6c8079f2e0333cc42a7fc682fce58f21, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1789,7 +1789,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5055282935304248362, guid: 6c8079f2e0333cc42a7fc682fce58f21, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.64
+      value: 4.01
       objectReference: {fileID: 0}
     - target: {fileID: 5055282935304248362, guid: 6c8079f2e0333cc42a7fc682fce58f21, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1797,7 +1797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5055282935304248362, guid: 6c8079f2e0333cc42a7fc682fce58f21, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.69
+      value: -5.54
       objectReference: {fileID: 0}
     - target: {fileID: 5055282935304248362, guid: 6c8079f2e0333cc42a7fc682fce58f21, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1934,4 +1934,7 @@ SceneRoots:
   - {fileID: 803975418}
   - {fileID: 428348628}
   - {fileID: 7341508062033938731}
+<<<<<<< Updated upstream
   - {fileID: 865035159}
+=======
+>>>>>>> Stashed changes

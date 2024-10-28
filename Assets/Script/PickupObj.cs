@@ -17,7 +17,7 @@ public class PickupObj : MonoBehaviour
     private bool isGrabbingCrate;
     void Start()
     {
-        pickupDistance = 5f;
+        pickupDistance = 7f;
         isGrabbingCrate = false;
     }
 
@@ -63,6 +63,7 @@ public class PickupObj : MonoBehaviour
                 {
                     if (raycastHit.transform.TryGetComponent(out objectContainer))
                     {
+                        Debug.Log("Container");
                         objectGrabbable.PlaceObjToContainer(objectContainer);
                         objectGrabbable.isInContainer = true;
                         objectGrabbable.rb.isKinematic = true;
