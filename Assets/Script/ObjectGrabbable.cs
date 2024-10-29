@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,19 +14,23 @@ public class ObjectGrabbable : MonoBehaviour
 
     public Material highlightMaterial;
     private Material originalMaterial;
-    private Vector3? getPosition;
+    public Vector3? getPosition;
     public bool isInContainer;
     private Vector3 originalVelocity, originalAngularVelocity;
     private Material[] getMaterials;
     public GameObject Mesh;
     public bool isContainer;
+    private int containerObjCounter;
+    public GameObject Objects;
 
     public bool isInCrate;
     public GameObject obj;
+    private GameObject objOriginalSetting;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        containerObjCounter = 0;
         //originalMaterial = GetComponent<Renderer>().material;
         isInContainer = false;
     }
@@ -75,17 +80,26 @@ public class ObjectGrabbable : MonoBehaviour
     {
         this.objContainer = objContainer;
         getPosition = this.objContainer.ChkContainerObjPos();
+        if (getPosition == null)
+        {
+            Debug.Log("No More Space");
+            return;
+        }
+        GameObject foundChild = GetChildByPosition(objContainer.transform, getPosition.Value);
+        obj.transform.transform.SetParent(foundChild.transform);
         obj.transform.position = getPosition.Value;
         obj.transform.rotation = Quaternion.Euler(0, 0, 0);
-        this.grabPointTransform = null;
+        grabPointTransform = null;
         rb.useGravity = false;
         rb.isKinematic = true;
     }
 
     public void PickupFromContainer(Transform grabPointTransform)
     {
+        GameObject objects = GameObject.Find("Objects");
         this .grabPointTransform = grabPointTransform;
-        this.objContainer.RemoveObj(getPosition.Value); 
+        this.objContainer.RemoveObj(getPosition.Value);
+        obj.transform.SetParent(objects.transform);
     }
 
     public void HighlightObject()
@@ -161,23 +175,36 @@ public class ObjectGrabbable : MonoBehaviour
     public void PlaceCrateItemsToContainer(ObjectContainer objectContainer)
     {
         this.objContainer = objectContainer;
-        
+
         //Get and store all objects inside container
-        for (int num = 0; num < 6; num++)
+        containerObjCounter++;
+        getPosition = this.objContainer.ChkContainerObjPos();
+        if (getPosition != null)
         {
-            getPosition = this.objContainer.ChkContainerObjPos();
-            if (getPosition == null)
-            {
-                break;
-            }
-            else
-                obj.transform.Find($"Pos{num + 1}").GetChild(0).transform.position = getPosition.Value;
-                obj.transform.Find($"Pos{num + 1}").GetChild(0).transform.rotation = Quaternion.Euler(0, 0, 0);
-                obj.transform.Find($"Pos{num + 1}").GetChild(0).GetComponent<Rigidbody>().useGravity = false;
-                obj.transform.Find($"Pos{num + 1}").GetChild(0).GetComponent<Rigidbody>().isKinematic = true;
-                Debug.Log(obj.transform.Find($"Pos{num + 1}").name);
+            obj.transform.Find($"Pos{containerObjCounter}").GetChild(0).transform.position = getPosition.Value;
+            obj.transform.Find($"Pos{containerObjCounter}").GetChild(0).transform.rotation = Quaternion.Euler(0, 0, 0);
+            obj.transform.Find($"Pos{containerObjCounter}").GetChild(0).GetComponent<Rigidbody>().useGravity = false;
+            obj.transform.Find($"Pos{containerObjCounter}").GetChild(0).GetComponent<Rigidbody>().isKinematic = true;
+            GameObject foundChild = GetChildByPosition(objectContainer.transform, getPosition.Value);
+            obj.transform.Find($"Pos{containerObjCounter}").GetChild(0).transform.SetParent(foundChild.transform);
+            Debug.Log(obj.transform.Find($"Pos{containerObjCounter}").name);
+            return;
         }
+        Debug.Log("No More Space");
         //this.grabPointTransform = null;
+    }
+
+    GameObject GetChildByPosition(Transform parent, Vector3 position)
+    {
+        foreach (Transform child in parent)
+        {
+            // Check if the child's position matches the target position
+            if (child.position == position)
+            {
+                return child.gameObject; // Return the matching child GameObject
+            }
+        }
+        return null; // Return null if no matching child is found
     }
 }
 
