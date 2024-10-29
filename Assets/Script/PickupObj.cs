@@ -77,7 +77,7 @@ public class PickupObj : MonoBehaviour
                         if (objectGrabbable.getPosition != null)
                         {
                             objectGrabbable.isInContainer = true;
-                            objectGrabbable.rb.isKinematic = true;
+                            //objectGrabbable.rb.isKinematic = true;
                             objectGrabbable = null;
                         }
                         

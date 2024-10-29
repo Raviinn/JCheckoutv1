@@ -70,11 +70,11 @@ public class ObjectContainer : MonoBehaviour
 
     public void HighlightObject()
     {
-        GetComponent<Renderer>().material = highlightMAterial;
+        GetComponent<MeshRenderer>().material = highlightMAterial;
     }
 
     public void RemoveHighlight()
     {
-        GetComponent<Renderer>().material = originalMaterial;
+        GetComponent<MeshRenderer>().material = originalMaterial;
     }
 }

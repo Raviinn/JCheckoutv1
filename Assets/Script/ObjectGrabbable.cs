@@ -90,6 +90,7 @@ public class ObjectGrabbable : MonoBehaviour
         obj.transform.position = getPosition.Value;
         obj.transform.rotation = Quaternion.Euler(0, 0, 0);
         grabPointTransform = null;
+        Debug.Log(rb.isKinematic);
         rb.useGravity = false;
         rb.isKinematic = true;
     }
