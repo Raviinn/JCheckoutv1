@@ -21,8 +21,7 @@ public class ObjectGrabbable : MonoBehaviour
     public GameObject Mesh;
     public bool isContainer;
     private int containerObjCounter;
-    public GameObject Objects;
-
+   
     public bool isInCrate;
     public GameObject obj;
     private GameObject objOriginalSetting;
@@ -182,13 +181,13 @@ public class ObjectGrabbable : MonoBehaviour
         getPosition = this.objContainer.ChkContainerObjPos();
         if (getPosition != null)
         {
-            obj.transform.Find($"Pos{containerObjCounter}").GetChild(0).transform.position = getPosition.Value;
-            obj.transform.Find($"Pos{containerObjCounter}").GetChild(0).transform.rotation = Quaternion.Euler(0, 0, 0);
-            obj.transform.Find($"Pos{containerObjCounter}").GetChild(0).GetComponent<Rigidbody>().useGravity = false;
-            obj.transform.Find($"Pos{containerObjCounter}").GetChild(0).GetComponent<Rigidbody>().isKinematic = true;
+            obj.transform.Find($"ItemPos{containerObjCounter}").GetChild(0).transform.position = getPosition.Value;
+            obj.transform.Find($"ItemPos{containerObjCounter}").GetChild(0).transform.rotation = Quaternion.Euler(0, 0, 0);
+            obj.transform.Find($"ItemPos{containerObjCounter}").GetChild(0).GetComponent<Rigidbody>().useGravity = false;
+            obj.transform.Find($"ItemPos{containerObjCounter}").GetChild(0).GetComponent<Rigidbody>().isKinematic = true;
             GameObject foundChild = GetChildByPosition(objectContainer.transform, getPosition.Value);
-            obj.transform.Find($"Pos{containerObjCounter}").GetChild(0).transform.SetParent(foundChild.transform);
-            Debug.Log(obj.transform.Find($"Pos{containerObjCounter}").name);
+            obj.transform.Find($"ItemPos{containerObjCounter}").GetChild(0).transform.SetParent(foundChild.transform);
+            Debug.Log(obj.transform.Find($"ItemPos{containerObjCounter}").name);
             return;
         }
         Debug.Log("No More Space");

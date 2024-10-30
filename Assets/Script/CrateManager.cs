@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CrateManager : MonoBehaviour
 {
     public GameObject crate;
     public GameObject[] itemPos;
-    public GameObject obj;
     public Material highlightMAterial;
-    public Material originalMaterial;
+    private Material originalMaterial;
+    public GameObject mesh;
     private Transform grabPointTransform;  
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        originalMaterial = mesh.GetComponent<MeshRenderer>().material;
     }
 
     // Update is called once per frame
@@ -54,12 +55,12 @@ public class CrateManager : MonoBehaviour
 
     public void HighlightObject()
     {
-        GetComponent<Renderer>().material = highlightMAterial;
+        mesh.GetComponent<Renderer>().material = highlightMAterial;
     }
 
     public void RemoveHighlight()
     {
-        GetComponent<Renderer>().material = originalMaterial;
+        mesh.GetComponent<Renderer>().material = originalMaterial;
     }
 
     

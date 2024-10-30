@@ -13,7 +13,7 @@ public class GenerateObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnPosition = new Vector3(0, 5, 0);
+        spawnPosition = new Vector3(0, 3, 0);
     }
 
     // Update is called once per frame
@@ -23,30 +23,30 @@ public class GenerateObject : MonoBehaviour
         {
           
             GameObject crate = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
-            crate.transform.GetChild(0).gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             for (int x = 0; x < 6; x++)
             {
-                obj[x] = Instantiate(cannedBeer, crate.transform.GetChild(0).GetComponent<CrateManager>().itemPos[x].transform.localPosition, 
+                obj[x] = Instantiate(cannedBeer, crate.transform.GetComponent<CrateManager>().itemPos[x].transform.localPosition, 
                     Quaternion.identity);
                 switch (x)
                 {
                     case 0:
-                        obj[x].transform.SetParent(crate.transform.Find("Objects/Pos1"));
+                        obj[x].transform.SetParent(crate.transform.Find("ItemPos1"));
                         break;
                     case 1:
-                        obj[x].transform.SetParent(crate.transform.Find("Objects/Pos2"));
+                        obj[x].transform.SetParent(crate.transform.Find("ItemPos2"));
                         break;
                     case 2:
-                        obj[x].transform.SetParent(crate.transform.Find("Objects/Pos3"));
+                        obj[x].transform.SetParent(crate.transform.Find("ItemPos3"));
                         break;
                     case 3:
-                        obj[x].transform.SetParent(crate.transform.Find("Objects/Pos4"));
+                        obj[x].transform.SetParent(crate.transform.Find("ItemPos4"));
                         break;
                     case 4:
-                        obj[x].transform.SetParent(crate.transform.Find("Objects/Pos5"));
+                        obj[x].transform.SetParent(crate.transform.Find("ItemPos5"));
                         break;
                     case 5:
-                        obj[x].transform.SetParent(crate.transform.Find("Objects/Pos6"));
+                        obj[x].transform.SetParent(crate.transform.Find("ItemPos6"));
                         break;
 
                 }
