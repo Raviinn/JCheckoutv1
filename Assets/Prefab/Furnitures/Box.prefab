@@ -112,6 +112,7 @@ MonoBehaviour:
   isInContainer: 0
   Mesh: {fileID: 2546994955502493426}
   isContainer: 1
+  isSpawnedItem: 1
   isInCrate: 0
   obj: {fileID: 1921770881320350223}
 --- !u!54 &3321080040312761680

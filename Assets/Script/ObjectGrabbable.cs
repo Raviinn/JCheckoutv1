@@ -20,18 +20,24 @@ public class ObjectGrabbable : MonoBehaviour
     private Material[] getMaterials;
     public GameObject Mesh;
     public bool isContainer;
+    public bool isSpawnedItem;
+    private bool isGrabbedFirstTime;
     private int containerObjCounter;
    
     public bool isInCrate;
     public GameObject obj;
     private GameObject objOriginalSetting;
+    private GenerateObject generateObject;
     // Start is called before the first frame update
     void Start()
     {
+        generateObject = FindObjectOfType<GenerateObject>();
+        isGrabbedFirstTime = true;
         rb = GetComponent<Rigidbody>();
         containerObjCounter = 0;
         //originalMaterial = GetComponent<Renderer>().material;
         isInContainer = false;
+        isSpawnedItem = false;
     }
 
     // Update is called once per frame
@@ -51,12 +57,17 @@ public class ObjectGrabbable : MonoBehaviour
             rb.useGravity = false;
             RemoveHighlight();
         }
+
     }
 
     public void Grab(Transform grabPointTransform)
     {
         this.grabPointTransform = grabPointTransform;
-
+        if (isSpawnedItem)
+        {
+            isGrabbedFirstTime = false;
+            generateObject.spawnCount--;
+        }
     }
 
     public void Drop()

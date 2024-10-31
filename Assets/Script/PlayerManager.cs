@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public CharacterController characterController;
+    private Rigidbody rb;
     public float speed;
     Vector3 velocity;
     public float gravity;
@@ -12,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         speed = 3f;
         gravity = -9.8f;
     }

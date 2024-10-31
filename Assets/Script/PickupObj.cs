@@ -9,6 +9,7 @@ public class PickupObj : MonoBehaviour
     public Transform playerCamera;
     public LayerMask pickupLayerMask;
     public Transform objectGrabPointTransform;
+    public GameObject objectGameObject;
     private float pickupDistance;
     private ObjectGrabbable objectGrabbable;
     private ObjectContainer objectContainer;
@@ -41,26 +42,22 @@ public class PickupObj : MonoBehaviour
                     out RaycastHit raycastHit, pickupDistance, pickupLayerMask))
                 {
                     if (raycastHit.transform.TryGetComponent(out objectGrabbable) && !objectGrabbable.isContainer)
-                    {
-                        if (objectGrabbable.isInContainer)
+                    {//object grabbed is not a crate
+                        if (objectGrabbable.isInContainer)//object grabbed is not from a crate
                         {
-                            objectGrabbable.rb.isKinematic = false;
                             objectGrabbable.PickupFromContainer(objectGrabPointTransform);
                             objectGrabbable.isInContainer = false;
                         }
-                        else if (objectGrabbable.isInCrate)
-                        {
-                            objectGrabbable.rb.isKinematic = false;
-                        }
-
+                        
+                        objectGrabbable.rb.isKinematic = false;
                         objectGrabbable.Grab(objectGrabPointTransform);
-
                     }
                     else if (raycastHit.transform.TryGetComponent(out objectGrabbable) && objectGrabbable.isContainer)
-                    {
-                        Debug.Log("Pickup Container");
+                    {//pickup crate
+                        Debug.Log("Pickup Crate");
                         objectGrabbable.Grab(objectGrabPointTransform);
                         isGrabbingCrate = true;
+                        objectGrabbable.transform.SetParent(objectGameObject.transform);
                     }
                 }
             }
@@ -126,7 +123,6 @@ public class PickupObj : MonoBehaviour
                         isGrabbingCrate = false;
                     }
                 }
-            
             }
         }
 
