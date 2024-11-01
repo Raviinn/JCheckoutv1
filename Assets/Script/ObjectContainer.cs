@@ -18,7 +18,10 @@ public class ObjectContainer : MonoBehaviour
         isAvailable = false;
         for (int i = 0; i < item.Length; i++)
         {
-            item[i].SetActive(false);
+            if (item[i].transform.childCount == 0)
+            {
+                item[i].SetActive(false);
+            }
         }
     }
 
