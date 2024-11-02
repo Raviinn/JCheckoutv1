@@ -69,7 +69,8 @@ public class NPCManager : MonoBehaviour
         }
 
         // Check if the NPC has reached a random checkpoint while going to mart
-        if (isGoingtoMart && npc.transform.position == NPCCheckpoints.transform.GetChild(randomCheckpointNumGenerator).transform.position)
+        if (isGoingtoMart && npc.transform.position == NPCCheckpoints.transform.GetChild(randomCheckpointNumGenerator).transform.position
+            && randomCheckpointNumGenerator != 5)
         {
             npc.transform.SetParent(NPCCheckpoints.transform.GetChild(randomCheckpointNumGenerator).transform);
             Vector3 directionShelf1 = (Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).
@@ -79,13 +80,14 @@ public class NPCManager : MonoBehaviour
                 rotationSpeed * Time.deltaTime);
 
             StartCoroutine(WaitForDelayToStore());
-
-            if (randomCheckpointNumGenerator == 5)
-            {
-                isGoingtoMart = false;
-                StartCoroutine(WaitForDelayToCashier());
-            }
+            Debug.Log("Next checkpoint is: " + randomCheckpointNumGenerator);
             
+        }
+
+        if (randomCheckpointNumGenerator == 5)
+        {
+            isGoingtoMart = false;
+            StartCoroutine(WaitForDelayToCashier());
         }
 
         // Check if the NPC has reached the cashier
@@ -101,8 +103,8 @@ public class NPCManager : MonoBehaviour
         if (!isGoingtoMart)
         {
             yield return new WaitForSeconds(0);
-            randomCheckpointNumGenerator = Random.Range(1, 5);
-            //randomCheckpointNumGenerator = 3;
+            //randomCheckpointNumGenerator = Random.Range(1, 5);
+            randomCheckpointNumGenerator = 3;
             isGoingtoMart = true;
         }
         else if (isGoingtoMart)
@@ -111,28 +113,33 @@ public class NPCManager : MonoBehaviour
             Debug.Log(randomCheckpointNumGenerator);
             if (randomCheckpointNumGenerator != 5)
             {
+                Debug.Log("Pasok");
                 randomShelfPlatformChecker = Random.Range(1, 4);
                 Debug.Log(randomShelfPlatformChecker);
-                /*for (int i = 0; i < 6; i++)
+                for (int i = 1; i < 7; i++)
                 {
+                    Debug.Log(i);     
                     if (Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).transform.
-                    Find($"Stands/Platform1").transform.GetChild(i).gameObject.
-                    activeSelf == true)
+                    Find($"Stands/Platform1/Item{i}").gameObject.activeSelf == true)
                     {
+                        boughtItems.SetActive(true);
                         Debug.Log("An item placed in container");
                         Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).transform.
-                    Find($"Stands/Platform1").transform.GetChild(i).transform.position = grabPoint.transform.position;
+                    Find($"Stands/Platform1/Item{i}").transform.GetChild(0).transform.position = grabPoint.transform.position;
                         Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).transform.
-                    Find($"Stands/Platform1").transform.GetChild(i).transform.SetParent(boughtItems.transform);
-                        
-                        
+                    Find($"Stands/Platform1/Item{i}").transform.GetChild(0).transform.SetParent(boughtItems.transform);
+                        Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).transform.
+                    Find($"Stands/Platform1/Item{i}").gameObject.SetActive(false);
+                        boughtItems.SetActive(false);
+                        break;
+
                         //get items from shelf and transfer to NPC
                     }
                     else
                     {
                         Debug.Log("No item in container");
                     }
-                }*/
+                }
                  
             }
             randomCheckpointNumGenerator = Random.Range(1, 6);
@@ -146,8 +153,8 @@ public class NPCManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         isGoingtoCashier = true;
         Debug.Log("Tapos");
-        
-        
+        StopAllCoroutines();
+
     }
 
 }
