@@ -15,6 +15,8 @@ public class NPCManager : MonoBehaviour
     public GameObject boughtItems;
     public GameObject grabPoint;
 
+    public Vector3 targetPosition;
+
     private bool isGoingtoMart, isGoingtoCashier;
     public float moveSpeed; // Speed of movement
     private int targetCount;
@@ -29,14 +31,25 @@ public class NPCManager : MonoBehaviour
     }
     private void Update()
     {
-        Vector3 targetPosition;
+        Debug.Log(randomCheckpointNumGenerator);
         if (!isGoingtoMart && !isGoingtoCashier)
         {
-            targetPosition = NPCCheckpoints.transform.GetChild(0).transform.position;
+            targetPosition = NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}").
+                transform.position;
         }
         else if (isGoingtoMart && !isGoingtoCashier)
         {
-            targetPosition = NPCCheckpoints.transform.GetChild(randomCheckpointNumGenerator).transform.position;
+            if (randomCheckpointNumGenerator < 11)
+            {
+                targetPosition = NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}").
+                    transform.position;
+            }
+            else
+            {
+                targetPosition = NPCCheckpoints.transform.Find("CheckPointCashier").
+                                    transform.position;
+            }
+
         }
         else if (isGoingtoCashier)
         {
@@ -70,31 +83,36 @@ public class NPCManager : MonoBehaviour
         }
 
         // Check if the NPC has reached a random checkpoint while going to mart
-        if (isGoingtoMart && npc.transform.position == NPCCheckpoints.transform.GetChild(randomCheckpointNumGenerator).transform.position
-            && randomCheckpointNumGenerator != 5)
+   
+        if (randomCheckpointNumGenerator < 11)
         {
-            npc.transform.SetParent(NPCCheckpoints.transform.GetChild(randomCheckpointNumGenerator).transform);
-            Vector3 directionShelf = (Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).
-                transform.position - npc.transform.position).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(directionShelf);
-            npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
-                rotationSpeed * Time.deltaTime);
+            if (isGoingtoMart && npc.transform.position == NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}")
+            .transform.position){
+                npc.transform.SetParent(NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}").
+                    transform);
+                Vector3 directionShelf = (Shelves.transform.Find($"Shelf{randomCheckpointNumGenerator}").
+                    transform.position - npc.transform.position).normalized;
+                Quaternion targetRotation = Quaternion.LookRotation(directionShelf);
+                npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
+                    rotationSpeed * Time.deltaTime);
 
-            StartCoroutine(WaitForDelayToStore());
-            Debug.Log("Next checkpoint is: " + randomCheckpointNumGenerator);
-            
+                StartCoroutine(WaitForDelayToStore());
+                Debug.Log("Next checkpoint is: " + randomCheckpointNumGenerator);
+                if (randomCheckpointNumGenerator >= 11)
+                {
+                    Debug.Log(randomCheckpointNumGenerator);
+                    isGoingtoMart = false;
+                    StartCoroutine(WaitForDelayToCashier());
+                }
+            }
         }
 
-        if (randomCheckpointNumGenerator == 5)
-        {
-            isGoingtoMart = false;
-            StartCoroutine(WaitForDelayToCashier());
-        }
+        
 
         // Check if the NPC has reached the cashier
-        if (isGoingtoCashier && npc.transform.position == NPCCheckpoints.transform.GetChild(5).transform.position)
+        if (isGoingtoCashier && npc.transform.position == NPCCheckpoints.transform.Find("CheckPointCashier").transform.position)
         {
-            npc.transform.SetParent(NPCCheckpoints.transform.GetChild(5).transform);
+            npc.transform.SetParent(NPCCheckpoints.transform.Find("CheckPointCashier").transform);
             Vector3 directionCashier = (Cashier.transform.position - npc.transform.position).normalized;
             Quaternion targetRotation = Quaternion.LookRotation(directionCashier);
             npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
@@ -108,8 +126,8 @@ public class NPCManager : MonoBehaviour
         if (!isGoingtoMart)
         {
             yield return new WaitForSeconds(0);
-            //randomCheckpointNumGenerator = Random.Range(1, 5);
-            randomCheckpointNumGenerator = 3;
+            //randomCheckpointNumGenerator = Random.Range(1, 11);
+            randomCheckpointNumGenerator = 4;
             isGoingtoMart = true;
         }
         else if (isGoingtoMart)
@@ -147,8 +165,7 @@ public class NPCManager : MonoBehaviour
                 }
                  
             }
-            randomCheckpointNumGenerator = Random.Range(1, 6);
-
+            randomCheckpointNumGenerator = Random.Range(1, 20);
         }
         StopAllCoroutines();
     }
