@@ -8,6 +8,7 @@ public class NPCManager : MonoBehaviour
     public GameObject NPCCheckpoints;
     public GameObject npc;
     public GameObject Shelves;
+    public GameObject Cashier;
     private float rotationSpeed;
     private int randomCheckpointNumGenerator;
     private int randomShelfPlatformChecker;
@@ -73,9 +74,9 @@ public class NPCManager : MonoBehaviour
             && randomCheckpointNumGenerator != 5)
         {
             npc.transform.SetParent(NPCCheckpoints.transform.GetChild(randomCheckpointNumGenerator).transform);
-            Vector3 directionShelf1 = (Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).
+            Vector3 directionShelf = (Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).
                 transform.position - npc.transform.position).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(directionShelf1);
+            Quaternion targetRotation = Quaternion.LookRotation(directionShelf);
             npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
                 rotationSpeed * Time.deltaTime);
 
@@ -94,6 +95,10 @@ public class NPCManager : MonoBehaviour
         if (isGoingtoCashier && npc.transform.position == NPCCheckpoints.transform.GetChild(5).transform.position)
         {
             npc.transform.SetParent(NPCCheckpoints.transform.GetChild(5).transform);
+            Vector3 directionCashier = (Cashier.transform.position - npc.transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(directionCashier);
+            npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
+                rotationSpeed * Time.deltaTime);
             npc.GetComponent<Rigidbody>().isKinematic = true;
         }
     }

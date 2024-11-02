@@ -1226,7 +1226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4705625858990908565, guid: 581fcbfcacaa0124fa4846604921bcf6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6727592837126915119, guid: 581fcbfcacaa0124fa4846604921bcf6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1442,6 +1442,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3649504419384969850, guid: fa849aa5927c109449719be488539909, type: 3}
   m_PrefabInstance: {fileID: 1980922195}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &612804254 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6166131427204325011, guid: 660c093071e3af4498bd961b3532fb6c, type: 3}
+  m_PrefabInstance: {fileID: 318770524}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &666261119 stripped
 Transform:
@@ -2048,6 +2053,7 @@ MonoBehaviour:
   NPCCheckpoints: {fileID: 686386552}
   npc: {fileID: 945595448}
   Shelves: {fileID: 2033816466}
+  Cashier: {fileID: 612804254}
   boughtItems: {fileID: 1351942244}
   grabPoint: {fileID: 937396109}
   moveSpeed: 8
