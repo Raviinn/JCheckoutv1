@@ -14,6 +14,7 @@ public class NPCManager : MonoBehaviour
     private int randomShelfPlatformChecker;
     public GameObject boughtItems;
     public GameObject grabPoint;
+    public bool isDone;
 
     public Vector3 targetPosition;
 
@@ -28,96 +29,109 @@ public class NPCManager : MonoBehaviour
         rotationSpeed = 20f;
         randomCheckpointNumGenerator = 0;
         thereIsItemInShelf = false;
+        isDone = false;
     }
     private void Update()
     {
-        Debug.Log(randomCheckpointNumGenerator);
-        if (!isGoingtoMart && !isGoingtoCashier)
+        //Debug.Log(isGoingtoMart +" and "+isGoingtoCashier);
+        if (!NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit)
         {
-            targetPosition = NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}").
-                transform.position;
-        }
-        else if (isGoingtoMart && !isGoingtoCashier)
-        {
-            if (randomCheckpointNumGenerator < 11)
+            if (!isGoingtoMart && !isGoingtoCashier)
             {
                 targetPosition = NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}").
                     transform.position;
             }
+            else if (isGoingtoMart && !isGoingtoCashier)
+            {
+                if (randomCheckpointNumGenerator < 11)
+                {
+                    targetPosition = NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}").
+                        transform.position;
+                }
+                else
+                {
+                    targetPosition = NPCCheckpoints.transform.Find("CheckPointCashier").
+                                        transform.position;
+                }
+
+            }
+            else if (!isGoingtoMart && isGoingtoCashier)
+            {
+                targetPosition = NPCCheckpoints.transform.Find("CheckPointCashier").transform.position;
+            }
             else
             {
-                targetPosition = NPCCheckpoints.transform.Find("CheckPointCashier").
-                                    transform.position;
+                return; // No movement
             }
 
-        }
-        else if (isGoingtoCashier)
-        {
-            npc.GetComponent<Rigidbody>().isKinematic = false;
-            targetPosition = NPCCheckpoints.transform.GetChild(5).transform.position;
-        }
-        else
-        {
-            return; // No movement
-        }
+            // Move the NPC
+            npc.transform.position = Vector3.MoveTowards(npc.transform.position, targetPosition,
+                moveSpeed * Time.deltaTime);
 
-        // Move the NPC
-        npc.transform.position = Vector3.MoveTowards(npc.transform.position, targetPosition,
-            moveSpeed * Time.deltaTime);
-
-        // Rotate the NPC to face the direction of movement
-        Vector3 direction = (targetPosition - npc.transform.position).normalized;
-        if (direction != Vector3.zero) // Ensure we have a valid direction
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
-                rotationSpeed * Time.deltaTime);
-        }
-
-        // Check if the NPC has reached the first checkpoint
-        if (!isGoingtoMart && npc.transform.position == NPCCheckpoints.transform.GetChild(0).transform.position)
-        {
-            npc.transform.SetParent(NPCCheckpoints.transform.GetChild(0).transform);
-            StartCoroutine(WaitForDelayToStore());
-            
-        }
-
-        // Check if the NPC has reached a random checkpoint while going to mart
-   
-        if (randomCheckpointNumGenerator < 11)
-        {
-            if (isGoingtoMart && npc.transform.position == NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}")
-            .transform.position){
-                npc.transform.SetParent(NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}").
-                    transform);
-                Vector3 directionShelf = (Shelves.transform.Find($"Shelf{randomCheckpointNumGenerator}").
-                    transform.position - npc.transform.position).normalized;
-                Quaternion targetRotation = Quaternion.LookRotation(directionShelf);
+            // Rotate the NPC to face the direction of movement
+            Vector3 direction = (targetPosition - npc.transform.position).normalized;
+            if (direction != Vector3.zero) // Ensure we have a valid direction
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
                 npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
                     rotationSpeed * Time.deltaTime);
+            }
 
+            // Check if the NPC has reached the first checkpoint
+            if (!isGoingtoMart && npc.transform.position == NPCCheckpoints.transform.GetChild(0).transform.position)
+            {
+                npc.transform.SetParent(NPCCheckpoints.transform.GetChild(0).transform);
                 StartCoroutine(WaitForDelayToStore());
-                Debug.Log("Next checkpoint is: " + randomCheckpointNumGenerator);
-                if (randomCheckpointNumGenerator >= 11)
+
+            }
+
+            // Check if the NPC has reached a random checkpoint while going to mart
+
+            if (randomCheckpointNumGenerator < 11)
+            {
+                if (isGoingtoMart && npc.transform.position == NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}")
+                .transform.position)
                 {
-                    Debug.Log(randomCheckpointNumGenerator);
-                    isGoingtoMart = false;
-                    StartCoroutine(WaitForDelayToCashier());
+                    npc.transform.SetParent(NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}").
+                        transform);
+                    Vector3 directionShelf = (Shelves.transform.Find($"Shelf{randomCheckpointNumGenerator}").
+                        transform.position - npc.transform.position).normalized;
+                    Quaternion targetRotation = Quaternion.LookRotation(directionShelf);
+                    npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
+                        rotationSpeed * Time.deltaTime);
+
+                    StartCoroutine(WaitForDelayToStore());
+                    //Debug.Log("Next checkpoint is: " + randomCheckpointNumGenerator);
+
                 }
+            }
+
+            if (randomCheckpointNumGenerator >= 11)
+            {
+                //Debug.Log("Last number is " + randomCheckpointNumGenerator);
+                isGoingtoMart = false;
+                isGoingtoCashier = true;
+                npc.transform.SetParent(NPCCheckpoints.transform.Find("CheckPointCashier").transform);
+                StartCoroutine(WaitForDelayToCashier());
+            }
+
+            // Check if the NPC has reached the cashier
+            if (isGoingtoCashier && npc.transform.position == NPCCheckpoints.transform.Find("CheckPointCashier").
+                transform.position)
+            {
+
+                Vector3 directionCashier = (Cashier.transform.position - npc.transform.position).normalized;
+                Quaternion targetRotation = Quaternion.LookRotation(directionCashier);
+                npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
+                    rotationSpeed * Time.deltaTime);
+                npc.GetComponent<Rigidbody>().isKinematic = true;
             }
         }
 
-        
-
-        // Check if the NPC has reached the cashier
-        if (isGoingtoCashier && npc.transform.position == NPCCheckpoints.transform.Find("CheckPointCashier").transform.position)
+        else if(NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit == true)
         {
-            npc.transform.SetParent(NPCCheckpoints.transform.Find("CheckPointCashier").transform);
-            Vector3 directionCashier = (Cashier.transform.position - npc.transform.position).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(directionCashier);
-            npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
-                rotationSpeed * Time.deltaTime);
-            npc.GetComponent<Rigidbody>().isKinematic = true;
+            Debug.Log("NPC Exit");
+            //NPC Exits store
         }
     }
 
@@ -136,7 +150,7 @@ public class NPCManager : MonoBehaviour
             Debug.Log(randomCheckpointNumGenerator);
             if (randomCheckpointNumGenerator != 5)
             {
-                Debug.Log("Pasok");
+                //Debug.Log("Pasok");
                 randomShelfPlatformChecker = Random.Range(1, 4);
                 Debug.Log(randomShelfPlatformChecker);
                 for (int i = 1; i < 7; i++)
@@ -173,8 +187,7 @@ public class NPCManager : MonoBehaviour
     private IEnumerator WaitForDelayToCashier()
     {
         yield return new WaitForSeconds(1f);
-        isGoingtoCashier = true;
-        Debug.Log("Tapos");
+        //Debug.Log("Tapos");
         StopAllCoroutines();
 
     }

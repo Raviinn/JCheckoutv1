@@ -28,6 +28,9 @@ public class ObjectGrabbable : MonoBehaviour
     public GameObject obj;
     private GameObject objOriginalSetting;
     private GenerateObject generateObject;
+    private PlayerManager playerManager;
+    private GameObject Objects;
+    public float objectPrice;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,8 @@ public class ObjectGrabbable : MonoBehaviour
         //originalMaterial = GetComponent<Renderer>().material;
         isInContainer = false;
         isSpawnedItem = false;
+        playerManager = FindObjectOfType<PlayerManager>();
+        Objects = GameObject.Find("Objects");
     }
 
     // Update is called once per frame
@@ -49,6 +54,7 @@ public class ObjectGrabbable : MonoBehaviour
             Vector3 newPosition = Vector3.Lerp(transform.position, grabPointTransform.position, 
                 Time.deltaTime * lerpSpeed);
             rb.MovePosition(newPosition);
+            obj.transform.SetParent(playerManager.transform.GetChild(2));
             originalAngularVelocity = rb.angularVelocity;
             originalVelocity = rb.velocity;
             rb.velocity = Vector3.zero;
@@ -63,11 +69,7 @@ public class ObjectGrabbable : MonoBehaviour
     public void Grab(Transform grabPointTransform)
     {
         this.grabPointTransform = grabPointTransform;
-        if (isSpawnedItem)
-        {
-            isGrabbedFirstTime = false;
-            generateObject.spawnCount--;
-        }
+
     }
 
     public void Drop()
@@ -76,6 +78,7 @@ public class ObjectGrabbable : MonoBehaviour
         rb.useGravity = true;
         rb.velocity = originalAngularVelocity;
         rb.angularVelocity = originalVelocity;
+        obj.transform.SetParent(Objects.transform);
     }
 
     public void Throw()
@@ -84,6 +87,7 @@ public class ObjectGrabbable : MonoBehaviour
         Vector3 throwDirection = Camera.main.transform.forward;
         rb.useGravity = true; // Ensure the Rigidbody is not kinematic
         rb.AddForce(throwDirection * 10f, ForceMode.Impulse);
+        obj.transform.SetParent(Objects.transform);
     }
 
     public void PlaceObjToContainer(ObjectContainer objContainer)
