@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9102778557263986091}
+  - component: {fileID: 6273352806793666875}
   m_Layer: 0
   m_Name: P100
   m_TagString: Untagged
@@ -26,12 +27,25 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5883818110747084891}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6273352806793666875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6116484050179794641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252f672c632a0b542befd17717df5457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyValue: 100
 --- !u!1001 &6209685537686187952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99,8 +113,67 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -4549757445259455984, guid: 525e7012860184e448fe238cbe1cb2bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 667035452668158166}
+    - targetCorrespondingSourceObject: {fileID: -4549757445259455984, guid: 525e7012860184e448fe238cbe1cb2bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1414943052477691829}
   m_SourcePrefab: {fileID: 100100000, guid: 525e7012860184e448fe238cbe1cb2bc, type: 3}
+--- !u!1 &1653172551250443680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4549757445259455984, guid: 525e7012860184e448fe238cbe1cb2bc, type: 3}
+  m_PrefabInstance: {fileID: 6209685537686187952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &667035452668158166
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653172551250443680}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.12, y: 0.007, z: 0.06}
+  m_Center: {x: 0, y: 0.003, z: 0}
+--- !u!54 &1414943052477691829
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653172551250443680}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 122
+  m_CollisionDetection: 1
 --- !u!4 &5883818110747084891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 525e7012860184e448fe238cbe1cb2bc, type: 3}

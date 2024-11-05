@@ -15,6 +15,7 @@ public class NPCManager : MonoBehaviour
     public GameObject boughtItems;
     public GameObject grabPoint;
     public bool isDone;
+    public float totalGroceryPrice;
 
     public Vector3 targetPosition;
 
@@ -30,10 +31,11 @@ public class NPCManager : MonoBehaviour
         randomCheckpointNumGenerator = 0;
         thereIsItemInShelf = false;
         isDone = false;
+        totalGroceryPrice = 0;
     }
     private void Update()
     {
-        //Debug.Log(isGoingtoMart +" and "+isGoingtoCashier);
+        //Debug.Log("Total Bill: " + totalGroceryPrice);
         if (!NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit)
         {
             if (!isGoingtoMart && !isGoingtoCashier)
@@ -147,7 +149,7 @@ public class NPCManager : MonoBehaviour
         else if (isGoingtoMart)
         {
             yield return new WaitForSeconds(5f);
-            Debug.Log(randomCheckpointNumGenerator);
+            //Debug.Log(randomCheckpointNumGenerator);
             if (randomCheckpointNumGenerator != 5)
             {
                 //Debug.Log("Pasok");
@@ -161,6 +163,8 @@ public class NPCManager : MonoBehaviour
                     {
                         boughtItems.SetActive(true);
                         Debug.Log("An item placed in container");
+                        totalGroceryPrice = totalGroceryPrice + Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).transform.
+                    Find($"Stands/Platform1/Item{i}").transform.GetChild(0).GetComponent<ObjectGrabbable>().objectPrice;
                         Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).transform.
                     Find($"Stands/Platform1/Item{i}").transform.GetChild(0).transform.position = grabPoint.transform.position;
                         Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).transform.
