@@ -128,8 +128,8 @@ public class NPCManager : MonoBehaviour
                 npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
                     rotationSpeed * Time.deltaTime);
                 npc.GetComponent<Rigidbody>().isKinematic = true;
-                npc.transform.Find("Female_NPC/NPCBasket/Basket").gameObject.SetActive(true);
-                npc.transform.Find("Female_NPC/NPCBasket/Basket").gameObject.transform.position = Cashier.transform.
+                npc.transform.Find("NPC/NPCBasket/Basket").gameObject.SetActive(true);
+                npc.transform.Find("NPC/NPCBasket/Basket").gameObject.transform.position = Cashier.transform.
                     Find("Cashier/Group1/Mesh1/GroceryHolder").position;
             }
         }
@@ -154,7 +154,7 @@ public class NPCManager : MonoBehaviour
                 transform.position && !isExiting)
             {
                 npc.transform.SetParent(NPCCheckpoints.transform.Find("Checkpoint0").transform);
-                npc.transform.Find("Female_NPC/NPCBasket/Basket").gameObject.SetActive(false);
+                npc.transform.Find("NPC/NPCBasket/Basket").gameObject.SetActive(false);
                 targetPosition = NPCCheckpoints.transform.Find("Checkpoint0").transform.position;
                 //NPC Exits store
             }
