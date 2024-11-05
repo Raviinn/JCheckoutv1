@@ -195,4 +195,15 @@ public class CashierController : MonoBehaviour
             userChange.text = "Player Change: " + playerChange;
         }
     }
+
+    public void EndTransaction()
+    {
+        NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit = true;
+        foreach(Transform transform in cashier.transform.Find("Cashier/Group1/Mesh1/MoneyHolder").transform)
+        {
+            Destroy(transform.gameObject);
+        }
+        cashierPanel.SetActive(false);
+        mouseLook.GetComponent<MouseLook>().isInCashier = false;
+    }
 }

@@ -23,6 +23,7 @@ public class NPCManager : MonoBehaviour
     public float moveSpeed; // Speed of movement
     private int targetCount;
     private bool thereIsItemInShelf;
+    private bool isExiting;
     private void Start()
     {
         isGoingtoMart = false;
@@ -32,6 +33,7 @@ public class NPCManager : MonoBehaviour
         thereIsItemInShelf = false;
         isDone = false;
         totalGroceryPrice = 0;
+        isExiting = false;
     }
     private void Update()
     {
@@ -121,19 +123,58 @@ public class NPCManager : MonoBehaviour
             if (isGoingtoCashier && npc.transform.position == NPCCheckpoints.transform.Find("CheckPointCashier").
                 transform.position)
             {
-
                 Vector3 directionCashier = (Cashier.transform.position - npc.transform.position).normalized;
                 Quaternion targetRotation = Quaternion.LookRotation(directionCashier);
                 npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
                     rotationSpeed * Time.deltaTime);
                 npc.GetComponent<Rigidbody>().isKinematic = true;
+                npc.transform.Find("Female_NPC/NPCBasket/Basket").gameObject.SetActive(true);
+                npc.transform.Find("Female_NPC/NPCBasket/Basket").gameObject.transform.position = Cashier.transform.
+                    Find("Cashier/Group1/Mesh1/GroceryHolder").position;
             }
         }
 
-        else if(NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit == true)
+        else
         {
-            Debug.Log("NPC Exit");
-            //NPC Exits store
+            // Move the NPC
+            npc.transform.position = Vector3.MoveTowards(npc.transform.position, targetPosition,
+                moveSpeed * Time.deltaTime);
+
+            // Rotate the NPC to face the direction of movement
+            Vector3 direction = (targetPosition - npc.transform.position).normalized;
+            if (direction != Vector3.zero) // Ensure we have a valid direction
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
+                    rotationSpeed * Time.deltaTime);
+            }
+
+            if (NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit == true &&
+                npc.transform.position != NPCCheckpoints.transform.Find("Checkpoint0").
+                transform.position && !isExiting)
+            {
+                npc.transform.SetParent(NPCCheckpoints.transform.Find("Checkpoint0").transform);
+                npc.transform.Find("Female_NPC/NPCBasket/Basket").gameObject.SetActive(false);
+                targetPosition = NPCCheckpoints.transform.Find("Checkpoint0").transform.position;
+                //NPC Exits store
+            }
+
+            if (NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit == true &&
+                npc.transform.position == NPCCheckpoints.transform.Find("Checkpoint0").
+                transform.position && !isExiting)
+            {
+                npc.transform.SetParent(NPCCheckpoints.transform.Find("ExitPoint1").transform);
+                targetPosition = NPCCheckpoints.transform.Find("ExitPoint1").transform.position;
+                isExiting = true;
+                //NPC Exits store
+            }
+
+            if (isExiting && npc.transform.position == NPCCheckpoints.transform.Find("ExitPoint1").
+                transform.position)
+            {
+                Destroy(npc);
+            }
+
         }
     }
 
