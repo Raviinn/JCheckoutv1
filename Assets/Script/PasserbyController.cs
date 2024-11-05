@@ -5,7 +5,6 @@ using UnityEngine;
 public class PasserbyController : MonoBehaviour
 {
     public PasserbyManager manager;
-    public Rigidbody rb;
     public int locPicked;
     public float zPicked;
     public float moveSpeed = 1;
