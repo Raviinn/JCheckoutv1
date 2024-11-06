@@ -16,6 +16,7 @@ public class NPCManager : MonoBehaviour
     public GameObject grabPoint;
     public bool isDone;
     public float totalGroceryPrice;
+    public bool npcExit;
     
     public Animator animator;
 
@@ -44,12 +45,14 @@ public class NPCManager : MonoBehaviour
         NPCCheckpoints = GameObject.Find("NPCCheckPoints");
         Shelves = GameObject.Find("StoreInterior/Shelves");
         Cashier = GameObject.Find("StoreInterior/Cashier");
+        npcExit = false;
     }
+
     private void Update()
     {
         animator.SetBool("is_waiting", false);
         //Debug.Log("Total Bill: " + totalGroceryPrice);
-        if (!NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit)
+        if (!npcExit)
         {
             if (!isGoingtoMart && !isGoingtoCashier)
             {
@@ -175,7 +178,7 @@ public class NPCManager : MonoBehaviour
                     rotationSpeed * Time.deltaTime);
             }
 
-            if (NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit == true &&
+            if (npcExit == true &&
                 npc.transform.position != NPCCheckpoints.transform.Find("Checkpoint0").
                 transform.position && !isExiting)
             {
@@ -185,7 +188,7 @@ public class NPCManager : MonoBehaviour
                 //NPC Exits store
             }
 
-            if (NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit == true &&
+            if (npcExit == true &&
                 npc.transform.position == NPCCheckpoints.transform.Find("Checkpoint0").
                 transform.position && !isExiting)
             {

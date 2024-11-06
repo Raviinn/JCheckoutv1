@@ -208,12 +208,14 @@ public class CashierController : MonoBehaviour
         player.GetComponent<PlayerManager>().playerMoney += NPCCheckpoints.transform.Find("CheckPointCashier").transform.GetChild(0).
                             GetComponent<NPCManager>().totalGroceryPrice;
         player.GetComponent<PlayerManager>().DisplayPlayerMoney();
-        NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit = true;
+        NPCCheckpoints.transform.Find("CheckPointCashier").transform.GetChild(0).GetComponent<NPCManager>().npcExit = true;
         foreach(Transform transform in cashier.transform.Find("Cashier/Group1/Mesh1/MoneyHolder").transform)
         {
             Destroy(transform.gameObject);
         }
         cashierPanel.SetActive(false);
+        playerChange = 0;
+        userChange.text = "Player Change:";
         mouseLook.GetComponent<MouseLook>().isInPosition = false;
     }
 }
