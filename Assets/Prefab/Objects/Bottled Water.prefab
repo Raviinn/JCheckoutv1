@@ -52,8 +52,11 @@ MonoBehaviour:
   isInContainer: 0
   Mesh: {fileID: 5938762092246765050}
   isContainer: 0
+  isSpawnedItem: 0
   isInCrate: 0
   obj: {fileID: 6134835017373676019}
+  objectPrice: 10
+  objectName: BottledWater
 --- !u!54 &62931563956846371
 Rigidbody:
   m_ObjectHideFlags: 0

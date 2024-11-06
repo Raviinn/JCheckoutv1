@@ -78,8 +78,12 @@ MonoBehaviour:
   highlightMaterial: {fileID: 2100000, guid: c2bfd8b80b137c8408cc6ad0994c8a81, type: 2}
   isInContainer: 0
   Mesh: {fileID: 2000024043978576109}
+  isContainer: 0
+  isSpawnedItem: 0
   isInCrate: 0
   obj: {fileID: 5785566603382108824}
+  objectPrice: 40
+  objectName: Sandwich
 --- !u!65 &4642355408904046107
 BoxCollider:
   m_ObjectHideFlags: 0

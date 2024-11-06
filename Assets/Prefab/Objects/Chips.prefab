@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.22, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3327557361914376439}
@@ -51,8 +51,12 @@ MonoBehaviour:
   highlightMaterial: {fileID: 2100000, guid: c2bfd8b80b137c8408cc6ad0994c8a81, type: 2}
   isInContainer: 0
   Mesh: {fileID: 725313589779130781}
+  isContainer: 0
+  isSpawnedItem: 0
   isInCrate: 0
   obj: {fileID: 4783774035879171613}
+  objectPrice: 40
+  objectName: Chips
 --- !u!65 &4274443144743436665
 BoxCollider:
   m_ObjectHideFlags: 0

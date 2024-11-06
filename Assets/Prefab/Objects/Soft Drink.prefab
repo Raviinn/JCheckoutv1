@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.309, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1494506483156382690}
@@ -73,8 +73,11 @@ MonoBehaviour:
   isInContainer: 0
   Mesh: {fileID: 3494936993604168328}
   isContainer: 0
+  isSpawnedItem: 0
   isInCrate: 0
   obj: {fileID: 1176037605392397862}
+  objectPrice: 15
+  objectName: SoftDrink
 --- !u!54 &503583072134934162
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -42,7 +42,7 @@ public class CashierController : MonoBehaviour
 
     private void HandleCashier()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             if (player.GetComponent<CharacterController>().enabled == true)
             {
@@ -51,22 +51,27 @@ public class CashierController : MonoBehaviour
                 {
                     if (raycastHit.transform.TryGetComponent(out cashierManager))
                     {
+
                         try
                         {
-                            player.GetComponent<CharacterController>().enabled = false;
-                        }catch (System.Exception)
+                            player.GetComponent<PlayerManager>().ToggleController();
+                        }
+                        catch (System.Exception)
                         {
 
                         }
-                        
+
                         player.transform.position = playerCheckPoint.transform.GetChild(0).position;
                         Debug.Log("Cashier");
 
                     }
 
                 }
-            }else
-                player.GetComponent<CharacterController>().enabled = true;
+            }
+            else if (player.transform.position == playerCheckPoint.transform.GetChild(0).position)
+            {
+                player.GetComponent<PlayerManager>().ToggleController();
+            }
         }
 
         if (NPCCheckpoints.transform.Find("CheckPointCashier").transform.childCount != 0)
@@ -96,7 +101,7 @@ public class CashierController : MonoBehaviour
                 if (cashierPanel.activeSelf == true)
                 {
                     
-                    mouseLook.GetComponent<MouseLook>().isInCashier = false;
+                    mouseLook.GetComponent<MouseLook>().isInPosition = false;
                     cashierPanel.SetActive(false);
                 }
                 //Open UI
@@ -107,7 +112,7 @@ public class CashierController : MonoBehaviour
                     paymentAmt.text = "Payment: " + npcPayment;
                     totalBill.text = "Total Bill: " + NPCCheckpoints.transform.Find("CheckPointCashier").transform.GetChild(0).
                         GetComponent<NPCManager>().totalGroceryPrice+"P";
-                    mouseLook.GetComponent<MouseLook>().isInCashier = true;
+                    mouseLook.GetComponent<MouseLook>().isInPosition = true;
                     cashierPanel.SetActive(true);
 
                 }
@@ -204,6 +209,6 @@ public class CashierController : MonoBehaviour
             Destroy(transform.gameObject);
         }
         cashierPanel.SetActive(false);
-        mouseLook.GetComponent<MouseLook>().isInCashier = false;
+        mouseLook.GetComponent<MouseLook>().isInPosition = false;
     }
 }

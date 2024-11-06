@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4924119404734425657}
+  - component: {fileID: 5823144665492096961}
+  - component: {fileID: 2531852206485945119}
+  - component: {fileID: 7223950782516112465}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Untagged
@@ -32,6 +35,76 @@ Transform:
   - {fileID: 2740000292570806740}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5823144665492096961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8761743246656971149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce651970aefe9314890125509fe59a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2531852206485945119}
+  highlightMaterial: {fileID: 2100000, guid: c2bfd8b80b137c8408cc6ad0994c8a81, type: 2}
+  isInContainer: 0
+  Mesh: {fileID: 3264475393802265454}
+  isContainer: 0
+  isSpawnedItem: 0
+  isInCrate: 0
+  obj: {fileID: 8761743246656971149}
+  objectPrice: 35
+  objectName: Apple
+--- !u!54 &2531852206485945119
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8761743246656971149}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!65 &7223950782516112465
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8761743246656971149}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.14, y: 0.15, z: 0.13}
+  m_Center: {x: 0, y: -0, z: 0}
 --- !u!1001 &2417543232018406975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103,10 +176,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8579bc101dac86a46b4ef85b7c7d8120, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3937140585342993565}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8579bc101dac86a46b4ef85b7c7d8120, type: 3}
 --- !u!4 &2740000292570806740 stripped
 Transform:
@@ -118,25 +188,3 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8579bc101dac86a46b4ef85b7c7d8120, type: 3}
   m_PrefabInstance: {fileID: 2417543232018406975}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &3937140585342993565
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3264475393802265454}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3645058858012553506, guid: 8579bc101dac86a46b4ef85b7c7d8120, type: 3}

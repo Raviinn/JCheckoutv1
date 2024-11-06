@@ -8,20 +8,20 @@ public class MouseLook : MonoBehaviour
     public Transform player;
     public float mouseSensitivity;
     private float xRotation;
-    public bool isInCashier;
+    public bool isInPosition;
     // Start is called before the first frame update
     void Start()
     {
         mouseSensitivity = 300f;
         xRotation = 0f;
         Cursor.lockState = CursorLockMode.Locked;
-        isInCashier = false;
+        isInPosition = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isInCashier)
+        if (!isInPosition)
         {
             Cursor.lockState = CursorLockMode.Locked;
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -32,7 +32,7 @@ public class MouseLook : MonoBehaviour
             transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
             player.Rotate(Vector3.up * mouseX);
         }
-        if (isInCashier)
+        if (isInPosition)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

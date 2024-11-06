@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour
     public float speed;
     Vector3 velocity;
     public float gravity;
+    public GameObject computer;
+    public GameObject cashier;
 
     // Start is called before the first frame update
     void Start()
@@ -31,5 +33,22 @@ public class PlayerManager : MonoBehaviour
 
             characterController.Move(velocity * Time.deltaTime);
         }
+    }
+
+    public void ToggleController()
+    {
+        characterController.enabled = !characterController.enabled;
+    }
+
+    public void ToggleCashierController()
+    {
+        cashier.GetComponent<CashierManager>().enabled =
+            !cashier.GetComponent<CashierManager>().enabled;
+    }
+
+    public void ToggleComputerController()
+    {
+        computer.GetComponent<ComputerManager>().enabled =
+            !computer.GetComponent<ComputerManager>().enabled;
     }
 }

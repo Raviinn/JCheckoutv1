@@ -51,8 +51,12 @@ MonoBehaviour:
   highlightMaterial: {fileID: 2100000, guid: c2bfd8b80b137c8408cc6ad0994c8a81, type: 2}
   isInContainer: 0
   Mesh: {fileID: 4440694478622343331}
+  isContainer: 0
+  isSpawnedItem: 0
   isInCrate: 0
   obj: {fileID: 5999106857167187373}
+  objectPrice: 40
+  objectName: Milk
 --- !u!65 &8406305625759586503
 BoxCollider:
   m_ObjectHideFlags: 0

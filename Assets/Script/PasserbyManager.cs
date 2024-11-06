@@ -6,6 +6,7 @@ public class PasserbyManager : MonoBehaviour
 {
     public GameObject MNPC1;
     public GameObject MNPC2;
+    public GameObject MNPC3;
     public GameObject FNPC1;
     public GameObject FNPC2;
     public GameObject FNPC3;
@@ -38,6 +39,7 @@ public class PasserbyManager : MonoBehaviour
     {
         MNPC1.SetActive(false);
         MNPC2.SetActive(false);
+        MNPC3.SetActive(false);
         FNPC1.SetActive(false);
         FNPC2.SetActive(false);
         FNPC3.SetActive(false);
@@ -46,7 +48,7 @@ public class PasserbyManager : MonoBehaviour
     void npcSelector()
     {
         locPicker++;
-        npcPicker = Random.Range(1, 6);
+        npcPicker = Random.Range(1, 7);
         timer = Random.Range(1, 5);
         switch (npcPicker)
         {
@@ -59,14 +61,18 @@ public class PasserbyManager : MonoBehaviour
                 break;
 
             case 3:
-                FNPC1.SetActive(true);
+                MNPC3.SetActive(true);
                 break;
 
             case 4:
-                FNPC2.SetActive(true);
+                FNPC1.SetActive(true);
                 break;
 
             case 5:
+                FNPC2.SetActive(true);
+                break;
+
+            case 6:
                 FNPC3.SetActive(true);
                 break;
         }

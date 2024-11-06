@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7573635770323687943}
+  - component: {fileID: 7096524146651037066}
+  - component: {fileID: 1073291173486012063}
+  - component: {fileID: 2374505074105373268}
   m_Layer: 0
   m_Name: Cherry
   m_TagString: Untagged
@@ -32,6 +35,76 @@ Transform:
   - {fileID: 6276494756482863253}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7096524146651037066
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894593422669017341}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.09}
+  m_Center: {x: 0, y: 0.03, z: 0}
+--- !u!54 &1073291173486012063
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894593422669017341}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &2374505074105373268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894593422669017341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce651970aefe9314890125509fe59a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1073291173486012063}
+  highlightMaterial: {fileID: 2100000, guid: c2bfd8b80b137c8408cc6ad0994c8a81, type: 2}
+  isInContainer: 0
+  Mesh: {fileID: 6652175187329616431}
+  isContainer: 0
+  isSpawnedItem: 0
+  isInCrate: 0
+  obj: {fileID: 2894593422669017341}
+  objectPrice: 15
+  objectName: Cherry
 --- !u!1001 &5805192453379995518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103,10 +176,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1c457701b8d1dd4e84e4214d6f2cc6e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 82107429160961275}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c457701b8d1dd4e84e4214d6f2cc6e, type: 3}
 --- !u!4 &6276494756482863253 stripped
 Transform:
@@ -118,25 +188,3 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e1c457701b8d1dd4e84e4214d6f2cc6e, type: 3}
   m_PrefabInstance: {fileID: 5805192453379995518}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &82107429160961275
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6652175187329616431}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5926517772586709617, guid: e1c457701b8d1dd4e84e4214d6f2cc6e, type: 3}

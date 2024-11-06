@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000096805215, y: 0.000009425165, z: 0.00012197741, w: 1}
   m_LocalPosition: {x: -1.726, y: 0.22299999, z: 1.77}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8279927920996329896}
@@ -73,8 +73,11 @@ MonoBehaviour:
   isInContainer: 1
   Mesh: {fileID: 7611940627376173940}
   isContainer: 0
+  isSpawnedItem: 0
   isInCrate: 0
   obj: {fileID: 492767483810242784}
+  objectPrice: 25
+  objectName: EnergyDrink
 --- !u!54 &7672448504787040494
 Rigidbody:
   m_ObjectHideFlags: 0

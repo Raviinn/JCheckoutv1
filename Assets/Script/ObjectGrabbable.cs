@@ -31,6 +31,7 @@ public class ObjectGrabbable : MonoBehaviour
     private PlayerManager playerManager;
     private GameObject Objects;
     public float objectPrice;
+    public string objectName;
     // Start is called before the first frame update
     void Start()
     {
