@@ -216,6 +216,7 @@ public class CashierController : MonoBehaviour
         cashierPanel.SetActive(false);
         playerChange = 0;
         userChange.text = "Player Change:";
+        GameObject.Find("NPCGenerator").GetComponent<NPCGenerator>().npcCounter--;
         mouseLook.GetComponent<MouseLook>().isInPosition = false;
     }
 }

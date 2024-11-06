@@ -53,6 +53,7 @@ MonoBehaviour:
   grabPoint: {fileID: 4004852484172043566}
   isDone: 0
   totalGroceryPrice: 0
+  npcExit: 0
   animator: {fileID: 8980724659432528408}
   targetPosition: {x: 0, y: 0, z: 0}
   moveSpeed: 1
@@ -416,7 +417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2016de2c13bac94e8e28c097e651862, type: 3}
       propertyPath: m_Name
-      value: Male_NPC
+      value: NPC
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

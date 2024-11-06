@@ -129,11 +129,19 @@ public class NPCManager : MonoBehaviour
             {
                 if (NPCCheckpoints.transform.Find("CheckPointCashier").childCount == 0)
                 {
-                    //Debug.Log("Last number is " + randomCheckpointNumGenerator);
-                    isGoingtoMart = false;
-                    isGoingtoCashier = true;
-                    npc.transform.SetParent(NPCCheckpoints.transform.Find("CheckPointCashier").transform);
-                    StartCoroutine(WaitForDelayToCashier());
+                    if (totalGroceryPrice == 0)
+                    {
+                        npcExit = true;
+                        GameObject.Find("NPCGenerator").GetComponent<NPCGenerator>().npcCounter--;
+                    }
+                    else
+                    {
+                        //Debug.Log("Last number is " + randomCheckpointNumGenerator);
+                        isGoingtoMart = false;
+                        isGoingtoCashier = true;
+                        npc.transform.SetParent(NPCCheckpoints.transform.Find("CheckPointCashier").transform);
+                        StartCoroutine(WaitForDelayToCashier());
+                    }
                 }
                 else
                 {

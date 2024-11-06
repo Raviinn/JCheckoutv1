@@ -2935,8 +2935,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 803975418}
+  - component: {fileID: 803975419}
   m_Layer: 0
-  m_Name: Container
+  m_Name: NPCGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2957,6 +2958,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &803975419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803975417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037374becffa7ee48a40ba3be0c72134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcToSpawn:
+  - {fileID: 4547517736433185230, guid: 6a3e6fe2f7334f648a7a0c6ee5649ef6, type: 3}
+  - {fileID: 6516839421073028077, guid: d0bb29d34c53e7e4a89aa6d001dda22f, type: 3}
+  - {fileID: 8115533171700278268, guid: cc5c62506eda11e449788739ef0c5275, type: 3}
+  - {fileID: 493435573948987739, guid: 4eb52662407543349ac5a2cb900b8812, type: 3}
+  - {fileID: 4180062046628224270, guid: 42b75074831226940978cefe763818de, type: 3}
+  isMArtOpen: 0
+  npcCounter: 0
 --- !u!4 &827925684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2457998135284073597, guid: 581fcbfcacaa0124fa4846604921bcf6, type: 3}
@@ -3504,7 +3525,7 @@ GameObject:
   - component: {fileID: 983310791}
   - component: {fileID: 983310790}
   m_Layer: 0
-  m_Name: Passerby NPCs
+  m_Name: PasserbyNPCs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7389,7 +7410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1984785630}
   m_Layer: 0
-  m_Name: Customer NPCs
+  m_Name: CustomerNPCs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8711,7 +8732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6516839421073028077, guid: d0bb29d34c53e7e4a89aa6d001dda22f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7127361600815046838, guid: d0bb29d34c53e7e4a89aa6d001dda22f, type: 3}
       propertyPath: Cashier
@@ -9008,7 +9029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4547517736433185230, guid: 6a3e6fe2f7334f648a7a0c6ee5649ef6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
