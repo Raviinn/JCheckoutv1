@@ -220,8 +220,7 @@ public class NPCManager : MonoBehaviour
         if (!isGoingtoMart)
         {
             yield return new WaitForSeconds(0);
-            //randomCheckpointNumGenerator = Random.Range(1, 11);
-            randomCheckpointNumGenerator = 4;
+            randomCheckpointNumGenerator = Random.Range(1, 11);
             isGoingtoMart = true;
         }
         else if (isGoingtoMart)
@@ -237,18 +236,18 @@ public class NPCManager : MonoBehaviour
                 {
                     Debug.Log(i);     
                     if (Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).transform.
-                    Find($"Stands/Platform1/Item{i}").gameObject.activeSelf == true)
+                    Find($"Stands/Platform{randomShelfPlatformChecker}/Item{i}").gameObject.activeSelf == true)
                     {
                         boughtItems.SetActive(true);
                         Debug.Log("An item placed in container");
                         totalGroceryPrice = totalGroceryPrice + Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).transform.
-                    Find($"Stands/Platform1/Item{i}").transform.GetChild(0).GetComponent<ObjectGrabbable>().objectPrice;
+                    Find($"Stands/Platform{randomShelfPlatformChecker}/Item{i}").transform.GetChild(0).GetComponent<ObjectGrabbable>().objectPrice;
                         Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).transform.
-                    Find($"Stands/Platform1/Item{i}").transform.GetChild(0).transform.position = grabPoint.transform.position;
+                    Find($"Stands/Platform{randomShelfPlatformChecker}/Item{i}").transform.GetChild(0).transform.position = grabPoint.transform.position;
                         Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).transform.
-                    Find($"Stands/Platform1/Item{i}").transform.GetChild(0).transform.SetParent(boughtItems.transform);
+                    Find($"Stands/Platform{randomShelfPlatformChecker}/Item{i}").transform.GetChild(0).transform.SetParent(boughtItems.transform);
                         Shelves.transform.GetChild(randomCheckpointNumGenerator - 1).transform.
-                    Find($"Stands/Platform1/Item{i}").gameObject.SetActive(false);
+                    Find($"Stands/Platform{randomShelfPlatformChecker}/Item{i}").gameObject.SetActive(false);
                         boughtItems.SetActive(false);
                         break;
 

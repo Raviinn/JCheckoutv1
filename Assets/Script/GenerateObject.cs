@@ -11,9 +11,11 @@ public class GenerateObject : MonoBehaviour
     public GameObject spawnPosition;
     private GameObject[] obj = new GameObject[6];
     private GameObject[] spawnPoints = new GameObject[2];
+    private PlayerManager playerManager;
     // Start is called before the first frame update
     void Start()
     {
+        playerManager = GameObject.Find("Player").GetComponent<PlayerManager>();
         //store container points to an array
         for (int count = 0; count < spawnPosition.transform.childCount - 1; count++)
         {
@@ -28,43 +30,7 @@ public class GenerateObject : MonoBehaviour
     }
     public void GenerateApple()
     {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
-        {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 0);
-        }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
-        }
-
-
-    }
-
-    public void GenerateBottledWater()
-    {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
-        {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 1);
-        }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
-        }
-
-
-    }
-
-    public void GenerateCannedBeer()
+        if (playerManager.playerMoney >= 180)
         {
             //Check spawnposition and return position
             GameObject pos = CheckContainerPos();
@@ -73,214 +39,307 @@ public class GenerateObject : MonoBehaviour
                 GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
                 crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 crate.transform.SetParent(pos.transform);
-                PutItemstoCrate(crate, 2);
+                PutItemstoCrate(crate, 0);
+                playerManager.playerMoney -= 180;
+                playerManager.DisplayPlayerMoney();
             }
             else
             {
                 Debug.Log("Cannot Spawn anymore");
             }
+        }
 
+
+    }
+
+    public void GenerateBottledWater()
+    {
+        if (playerManager.playerMoney >= 40)
+        {
+            //Check spawnposition and return position
+            GameObject pos = CheckContainerPos();
+            if (pos != null)
+            {
+                GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                crate.transform.SetParent(pos.transform);
+                PutItemstoCrate(crate, 1);
+                playerManager.playerMoney -= 40;
+                playerManager.DisplayPlayerMoney();
+            }
+            else
+            {
+                Debug.Log("Cannot Spawn anymore");
+            }
+        }
+
+    }
+
+    public void GenerateCannedBeer()
+        {
+            if (playerManager.playerMoney >= 120)
+            {
+                //Check spawnposition and return position
+                GameObject pos = CheckContainerPos();
+                if (pos != null)
+                {
+                    GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                    crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                    crate.transform.SetParent(pos.transform);
+                    PutItemstoCrate(crate, 2);
+                    playerManager.playerMoney -= 120;
+                    playerManager.DisplayPlayerMoney();
+            }
+                else
+                {
+                    Debug.Log("Cannot Spawn anymore");
+                }
+            }
 
         }
 
     public void GenerateCherry()
     {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
+        if (playerManager.playerMoney >= 70)
         {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 3);
+            //Check spawnposition and return position
+            GameObject pos = CheckContainerPos();
+            if (pos != null)
+            {
+                GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                crate.transform.SetParent(pos.transform);
+                PutItemstoCrate(crate, 3);
+                playerManager.playerMoney -= 70;
+                playerManager.DisplayPlayerMoney();
+            }
+            else
+            {
+                Debug.Log("Cannot Spawn anymore");
+            }
         }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
-        }
-
 
     }
 
     public void GenerateChewingGum()
     {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
+        if (playerManager.playerMoney >= 20)
         {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 4);
+            //Check spawnposition and return position
+            GameObject pos = CheckContainerPos();
+            if (pos != null)
+            {
+                GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                crate.transform.SetParent(pos.transform);
+                PutItemstoCrate(crate, 4);
+                playerManager.playerMoney -= 20;
+                playerManager.DisplayPlayerMoney();
+            }
+            else
+            {
+                Debug.Log("Cannot Spawn anymore");
+            }
         }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
-        }
-
 
     }
 
     public void GenerateChips()
     {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
+        if (playerManager.playerMoney >= 200)
         {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 5);
+            //Check spawnposition and return position
+            GameObject pos = CheckContainerPos();
+            if (pos != null)
+            {
+                GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                crate.transform.SetParent(pos.transform);
+                PutItemstoCrate(crate, 5);
+                playerManager.playerMoney -= 200;
+                playerManager.DisplayPlayerMoney();
+            }
+            else
+            {
+                Debug.Log("Cannot Spawn anymore");
+            }
         }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
-        }
-
 
     }
 
     public void GenerateCigarettes()
     {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
+        if (playerManager.playerMoney >= 250)
         {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 6);
+            //Check spawnposition and return position
+            GameObject pos = CheckContainerPos();
+            if (pos != null)
+            {
+                GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                crate.transform.SetParent(pos.transform);
+                PutItemstoCrate(crate, 6);
+                playerManager.playerMoney -= 250;
+                playerManager.DisplayPlayerMoney();
+            }
+            else
+            {
+                Debug.Log("Cannot Spawn anymore");
+            }
         }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
-        }
-
-
     }
 
     public void GenerateCoffee()
     {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
+        if (playerManager.playerMoney >= 150)
         {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 7);
+            //Check spawnposition and return position
+            GameObject pos = CheckContainerPos();
+            if (pos != null)
+            {
+                GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                crate.transform.SetParent(pos.transform);
+                PutItemstoCrate(crate, 7);
+                playerManager.playerMoney -= 150;
+                playerManager.DisplayPlayerMoney();
+            }
+            else
+            {
+                Debug.Log("Cannot Spawn anymore");
+            }
         }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
-        }
-
-
     }
 
     public void GenerateEnergyDrink()
     {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
+        if (playerManager.playerMoney >= 130)
         {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 8);
+            //Check spawnposition and return position
+            GameObject pos = CheckContainerPos();
+            if (pos != null)
+            {
+                GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                crate.transform.SetParent(pos.transform);
+                PutItemstoCrate(crate, 8);
+                playerManager.playerMoney -= 130;
+                playerManager.DisplayPlayerMoney();
+            }
+            else
+            {
+                Debug.Log("Cannot Spawn anymore");
+            }
         }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
-        }
-
-
     }
 
     public void GenerateGuava()
     {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
+        if (playerManager.playerMoney >= 30)
         {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 9);
+            //Check spawnposition and return position
+            GameObject pos = CheckContainerPos();
+            if (pos != null)
+            {
+                GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                crate.transform.SetParent(pos.transform);
+                PutItemstoCrate(crate, 9);
+                playerManager.playerMoney -= 30;
+                playerManager.DisplayPlayerMoney();
+            }
+            else
+            {
+                Debug.Log("Cannot Spawn anymore");
+            }
         }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
-        }
-
-
     }
 
     public void GenerateMilk()
     {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
+        if (playerManager.playerMoney >= 200)
         {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 10);
-        }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
+            //Check spawnposition and return position
+            GameObject pos = CheckContainerPos();
+            if (pos != null)
+            {
+                GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                crate.transform.SetParent(pos.transform);
+                PutItemstoCrate(crate, 10);
+                playerManager.playerMoney -= 200;
+                playerManager.DisplayPlayerMoney();
+            }
+            else
+            {
+                Debug.Log("Cannot Spawn anymore");
+            }
         }
     }
 
     public void GenerateOrange()
     {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
+        if (playerManager.playerMoney >= 40)
         {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 11);
-        }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
+            //Check spawnposition and return position
+            GameObject pos = CheckContainerPos();
+            if (pos != null)
+            {
+                GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                crate.transform.SetParent(pos.transform);
+                PutItemstoCrate(crate, 11);
+                playerManager.playerMoney -= 40;
+                playerManager.DisplayPlayerMoney();
+            }
+            else
+            {
+                Debug.Log("Cannot Spawn anymore");
+            }
         }
     }
 
     public void GenerateSandwich()
     {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
+        if (playerManager.playerMoney >= 200)
         {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 12);
-        }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
+            //Check spawnposition and return position
+            GameObject pos = CheckContainerPos();
+            if (pos != null)
+            {
+                GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                crate.transform.SetParent(pos.transform);
+                PutItemstoCrate(crate, 12);
+                playerManager.playerMoney -= 200;
+                playerManager.DisplayPlayerMoney();
+            }
+            else
+            {
+                Debug.Log("Cannot Spawn anymore");
+            }
         }
     }
 
     public void GenerateSoftDrink()
     {
-        //Check spawnposition and return position
-        GameObject pos = CheckContainerPos();
-        if (pos != null)
+        if (playerManager.playerMoney >= 50)
         {
-            GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
-            crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 13);
-        }
-        else
-        {
-            Debug.Log("Cannot Spawn anymore");
+            //Check spawnposition and return position
+            GameObject pos = CheckContainerPos();
+            if (pos != null)
+            {
+                GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
+                crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                crate.transform.SetParent(pos.transform);
+                PutItemstoCrate(crate, 13);
+                playerManager.playerMoney -= 50;
+                playerManager.DisplayPlayerMoney();
+            }
+            else
+            {
+                Debug.Log("Cannot Spawn anymore");
+            }
         }
     }
 
