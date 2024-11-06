@@ -225,7 +225,7 @@ public class GenerateObject : MonoBehaviour
             GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
             crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 11);
+            PutItemstoCrate(crate, 10);
         }
         else
         {
@@ -242,7 +242,7 @@ public class GenerateObject : MonoBehaviour
             GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
             crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 12);
+            PutItemstoCrate(crate, 11);
         }
         else
         {
@@ -259,7 +259,7 @@ public class GenerateObject : MonoBehaviour
             GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
             crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 13);
+            PutItemstoCrate(crate, 12);
         }
         else
         {
@@ -276,7 +276,7 @@ public class GenerateObject : MonoBehaviour
             GameObject crate = Instantiate(prefabToSpawn, pos.transform.position, Quaternion.identity);
             crate.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             crate.transform.SetParent(pos.transform);
-            PutItemstoCrate(crate, 14);
+            PutItemstoCrate(crate, 13);
         }
         else
         {

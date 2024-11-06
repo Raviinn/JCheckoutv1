@@ -41,6 +41,9 @@ public class NPCManager : MonoBehaviour
         npcPayment = 0; ;
         hasGeneratedRandomNum = false;
         animator = npc.transform.GetChild(0).GetComponent<Animator>();
+        NPCCheckpoints = GameObject.Find("NPCCheckPoints");
+        Shelves = GameObject.Find("StoreInterior/Shelves");
+        Cashier = GameObject.Find("StoreInterior/Cashier");
     }
     private void Update()
     {
@@ -142,7 +145,7 @@ public class NPCManager : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(directionCashier);
                 npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
                     rotationSpeed * Time.deltaTime);
-                npc.GetComponent<Rigidbody>().isKinematic = true;
+                //npc.GetComponent<Rigidbody>().isKinematic = true;
                 npc.transform.Find("NPC/NPCBasket/Basket").gameObject.SetActive(true);
                 npc.transform.Find("NPC/NPCBasket/Basket").gameObject.transform.position = Cashier.transform.
                     Find("Cashier/Group1/Mesh1/GroceryHolder").position;
