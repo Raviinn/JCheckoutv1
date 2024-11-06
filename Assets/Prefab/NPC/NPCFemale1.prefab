@@ -597,8 +597,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949042410709297094}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0ed763fca6c0589408770f9edd22851f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1862782e0b24eb4429cb36c15f645bb6, type: 2}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0b6b92abf8c194478d2e1c6bc02b7b9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4035,8 +4035,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1545863045983002838}
   - component: {fileID: 1687787731635432400}
-  - component: {fileID: 2261632878191974956}
-  - component: {fileID: 5381642733282572259}
   m_Layer: 0
   m_Name: NPCFemale1
   m_TagString: Untagged
@@ -4080,56 +4078,10 @@ MonoBehaviour:
   grabPoint: {fileID: 7586467227517437770}
   isDone: 0
   totalGroceryPrice: 0
+  animator: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   moveSpeed: 5
---- !u!65 &2261632878191974956
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7231157436304501101}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.39, y: 1.4, z: 0.22}
-  m_Center: {x: -0.013228655, y: 0.68, z: -0.03}
---- !u!54 &5381642733282572259
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7231157436304501101}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 116
-  m_CollisionDetection: 1
+  npcPayment: 0
 --- !u!1 &7303187972581533205
 GameObject:
   m_ObjectHideFlags: 0
