@@ -53,7 +53,7 @@ public class NPCManager : MonoBehaviour
         {
             if (!isGoingtoMart && !isGoingtoCashier)
             {
-                targetPosition = NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}").
+                targetPosition = NPCCheckpoints.transform.Find($"Checkpoint0").
                     transform.position;
             }
             else if (isGoingtoMart && !isGoingtoCashier)
@@ -122,14 +122,22 @@ public class NPCManager : MonoBehaviour
                 }
             }
 
-            if (randomCheckpointNumGenerator >= 11)
+            if (randomCheckpointNumGenerator >= 11 )
             {
-                //Debug.Log("Last number is " + randomCheckpointNumGenerator);
-                isGoingtoMart = false;
-                isGoingtoCashier = true;
-                npc.transform.SetParent(NPCCheckpoints.transform.Find("CheckPointCashier").transform);
-                StartCoroutine(WaitForDelayToCashier());
+                if (NPCCheckpoints.transform.Find("CheckPointCashier").childCount == 0)
+                {
+                    //Debug.Log("Last number is " + randomCheckpointNumGenerator);
+                    isGoingtoMart = false;
+                    isGoingtoCashier = true;
+                    npc.transform.SetParent(NPCCheckpoints.transform.Find("CheckPointCashier").transform);
+                    StartCoroutine(WaitForDelayToCashier());
+                }
+                else
+                {
+                    randomCheckpointNumGenerator = Random.Range(1, 20);
+                }
             }
+            
 
             // Check if the NPC has reached the cashier
             if (isGoingtoCashier && npc.transform.position == NPCCheckpoints.transform.Find("CheckPointCashier").
