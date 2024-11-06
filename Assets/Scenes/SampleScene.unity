@@ -7717,26 +7717,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1459327043}
-    - target: {fileID: 83517276174797135, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GiveChange50
-      objectReference: {fileID: 0}
     - target: {fileID: 914872747708460444, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1459327043}
-    - target: {fileID: 914872747708460444, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GiveChange10
-      objectReference: {fileID: 0}
     - target: {fileID: 1979984094303348301, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1459327043}
-    - target: {fileID: 1979984094303348301, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RemoveChange
-      objectReference: {fileID: 0}
     - target: {fileID: 1995692244239125731, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
       propertyPath: m_Name
       value: CashierPanel
@@ -7745,10 +7733,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1459327043}
-    - target: {fileID: 3452111096618761941, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GiveChange100
-      objectReference: {fileID: 0}
     - target: {fileID: 4776420638148378001, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7811,11 +7795,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4776420638148378001, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.012634277
       objectReference: {fileID: 0}
     - target: {fileID: 4776420638148378001, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.024261475
       objectReference: {fileID: 0}
     - target: {fileID: 4776420638148378001, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7833,34 +7817,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1459327043}
-    - target: {fileID: 4787192695537419729, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EndTransaction
-      objectReference: {fileID: 0}
     - target: {fileID: 6115604882843300274, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1459327043}
-    - target: {fileID: 6115604882843300274, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GiveChange20
-      objectReference: {fileID: 0}
     - target: {fileID: 6571446414141108425, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1459327043}
-    - target: {fileID: 6571446414141108425, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GiveChange1
-      objectReference: {fileID: 0}
     - target: {fileID: 8193894127825981136, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1459327043}
-    - target: {fileID: 8193894127825981136, guid: 2566d3308c1a7b54b992f2c42721278c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GiveChange5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

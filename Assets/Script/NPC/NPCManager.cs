@@ -24,6 +24,8 @@ public class NPCManager : MonoBehaviour
     private int targetCount;
     private bool thereIsItemInShelf;
     private bool isExiting;
+    public float npcPayment;
+    private bool hasGeneratedRandomNum;
     private void Start()
     {
         isGoingtoMart = false;
@@ -34,6 +36,8 @@ public class NPCManager : MonoBehaviour
         isDone = false;
         totalGroceryPrice = 0;
         isExiting = false;
+        npcPayment = 0; ;
+        hasGeneratedRandomNum = false;
     }
     private void Update()
     {
@@ -123,6 +127,11 @@ public class NPCManager : MonoBehaviour
             if (isGoingtoCashier && npc.transform.position == NPCCheckpoints.transform.Find("CheckPointCashier").
                 transform.position)
             {
+                if (!hasGeneratedRandomNum)
+                {
+                    GenerateNPCPayment();
+                    hasGeneratedRandomNum = true;
+                }
                 Vector3 directionCashier = (Cashier.transform.position - npc.transform.position).normalized;
                 Quaternion targetRotation = Quaternion.LookRotation(directionCashier);
                 npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation,
@@ -235,6 +244,19 @@ public class NPCManager : MonoBehaviour
         //Debug.Log("Tapos");
         StopAllCoroutines();
 
+    }
+
+    private void GenerateNPCPayment()
+    {
+        int randomnNum = Random.Range(0, 200);
+        if (randomnNum == 0)
+        {
+            npcPayment = totalGroceryPrice;
+        }
+        else
+        {
+            npcPayment = totalGroceryPrice + randomnNum;
+        }
     }
 
 }

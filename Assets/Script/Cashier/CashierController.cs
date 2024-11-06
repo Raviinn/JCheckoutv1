@@ -76,7 +76,8 @@ public class CashierController : MonoBehaviour
 
         if (NPCCheckpoints.transform.Find("CheckPointCashier").transform.childCount != 0)
         {
-            changes = npcPayment - NPCCheckpoints.transform.Find("CheckPointCashier").transform.GetChild(0).
+            changes = NPCCheckpoints.transform.Find("CheckPointCashier").transform.GetChild(0).
+                            GetComponent<NPCManager>().npcPayment - NPCCheckpoints.transform.Find("CheckPointCashier").transform.GetChild(0).
                             GetComponent<NPCManager>().totalGroceryPrice; 
             
             if (playerChange == changes)
@@ -86,7 +87,7 @@ public class CashierController : MonoBehaviour
             }
             else
             {
-                
+                Debug.Log(playerCamera + " and " + changes);
                 endTransaction.SetActive(false);
             }
             
@@ -107,9 +108,11 @@ public class CashierController : MonoBehaviour
                 //Open UI
                 else
                 {
-                    change.text = "Change: " + (npcPayment - NPCCheckpoints.transform.Find("CheckPointCashier").transform.GetChild(0).
+                    change.text = "Change: " + (NPCCheckpoints.transform.Find("CheckPointCashier").transform.GetChild(0).
+                            GetComponent<NPCManager>().npcPayment - NPCCheckpoints.transform.Find("CheckPointCashier").transform.GetChild(0).
                         GetComponent<NPCManager>().totalGroceryPrice);
-                    paymentAmt.text = "Payment: " + npcPayment;
+                    paymentAmt.text = "Payment: " + NPCCheckpoints.transform.Find("CheckPointCashier").transform.GetChild(0).
+                            GetComponent<NPCManager>().npcPayment;
                     totalBill.text = "Total Bill: " + NPCCheckpoints.transform.Find("CheckPointCashier").transform.GetChild(0).
                         GetComponent<NPCManager>().totalGroceryPrice+"P";
                     mouseLook.GetComponent<MouseLook>().isInPosition = true;
