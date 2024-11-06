@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject computer;
     public GameObject cashier;
     public float playerMoney;
+    public Text playerMoneyText;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class PlayerManager : MonoBehaviour
         speed = 3f;
         gravity = -9.8f;
         playerMoney = 500;
+        DisplayPlayerMoney();
     }
 
     // Update is called once per frame
@@ -52,5 +55,10 @@ public class PlayerManager : MonoBehaviour
     {
         computer.GetComponent<ComputerManager>().enabled =
             !computer.GetComponent<ComputerManager>().enabled;
+    }
+
+    public void DisplayPlayerMoney()
+    {
+        playerMoneyText.text = "Total Money: " + playerMoney + "P";
     }
 }

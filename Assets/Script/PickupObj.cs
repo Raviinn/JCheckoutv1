@@ -91,6 +91,7 @@ public class PickupObj : MonoBehaviour
                     else if (raycastHit.transform.TryGetComponent(out garbageManager))//Place objects in crate to container
                     {
                         Debug.Log("Throwing Garbage");
+                        Destroy(objectGrabbable.gameObject);
                         //objectGrabbable.PlaceCrateItemsToContainer(objectContainer);
                         //canDropObj = false;
 

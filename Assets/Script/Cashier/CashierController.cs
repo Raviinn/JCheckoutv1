@@ -87,7 +87,6 @@ public class CashierController : MonoBehaviour
             }
             else
             {
-                Debug.Log(playerCamera + " and " + changes);
                 endTransaction.SetActive(false);
             }
             
@@ -206,6 +205,9 @@ public class CashierController : MonoBehaviour
 
     public void EndTransaction()
     {
+        player.GetComponent<PlayerManager>().playerMoney += NPCCheckpoints.transform.Find("CheckPointCashier").transform.GetChild(0).
+                            GetComponent<NPCManager>().totalGroceryPrice;
+        player.GetComponent<PlayerManager>().DisplayPlayerMoney();
         NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit = true;
         foreach(Transform transform in cashier.transform.Find("Cashier/Group1/Mesh1/MoneyHolder").transform)
         {

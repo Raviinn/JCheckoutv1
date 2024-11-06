@@ -13,6 +13,6 @@ public class xPositionChecker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(transform.position.x);
+        //Debug.Log(transform.position.x);
     }
 }
