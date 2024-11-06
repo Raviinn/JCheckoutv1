@@ -39,7 +39,7 @@ public class PasserbyManager : MonoBehaviour
     {
         MNPC1.SetActive(false);
         MNPC2.SetActive(false);
-        MNPC3.SetActive(false);
+        //MNPC3.SetActive(false);
         FNPC1.SetActive(false);
         FNPC2.SetActive(false);
         FNPC3.SetActive(false);
@@ -61,7 +61,7 @@ public class PasserbyManager : MonoBehaviour
                 break;
 
             case 3:
-                MNPC3.SetActive(true);
+                //MNPC3.SetActive(true);
                 break;
 
             case 4:

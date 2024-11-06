@@ -15,6 +15,7 @@ public class PickupObj : MonoBehaviour
     private ObjectContainer objectContainer;
     private ObjectGrabbable currentHighlightedObject;
     private ObjectContainer currentHighlightedObjectContainer;
+    private GarbageManager garbageManager;
     private CrateManager crateManager;
     private bool isGrabbingCrate;
     private bool isContainer;
@@ -85,6 +86,13 @@ public class PickupObj : MonoBehaviour
                         Debug.Log("Grabbing Container");
                         objectGrabbable.PlaceCrateItemsToContainer(objectContainer);
                         canDropObj = false;
+
+                    }
+                    else if (raycastHit.transform.TryGetComponent(out garbageManager))//Place objects in crate to container
+                    {
+                        Debug.Log("Throwing Garbage");
+                        //objectGrabbable.PlaceCrateItemsToContainer(objectContainer);
+                        //canDropObj = false;
 
                     }
                     else

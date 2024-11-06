@@ -10,12 +10,14 @@ public class PlayerManager : MonoBehaviour
     public float gravity;
     public GameObject computer;
     public GameObject cashier;
+    public float playerMoney;
 
     // Start is called before the first frame update
     void Start()
     {
         speed = 3f;
         gravity = -9.8f;
+        playerMoney = 500;
     }
 
     // Update is called once per frame

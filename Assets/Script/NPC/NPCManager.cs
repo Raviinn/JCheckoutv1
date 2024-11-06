@@ -16,6 +16,7 @@ public class NPCManager : MonoBehaviour
     public GameObject grabPoint;
     public bool isDone;
     public float totalGroceryPrice;
+    private Animator animator;
 
     public Vector3 targetPosition;
 
@@ -38,9 +39,11 @@ public class NPCManager : MonoBehaviour
         isExiting = false;
         npcPayment = 0; ;
         hasGeneratedRandomNum = false;
+        animator = npc.transform.GetChild(0).GetComponent<Animator>();
     }
     private void Update()
     {
+        animator.SetBool("is_waiting", false);
         //Debug.Log("Total Bill: " + totalGroceryPrice);
         if (!NPCCheckpoints.GetComponent<NPCCheckPointManager>().npcExit)
         {
@@ -97,6 +100,7 @@ public class NPCManager : MonoBehaviour
 
             if (randomCheckpointNumGenerator < 11)
             {
+                animator.SetBool("is_waiting", true);
                 if (isGoingtoMart && npc.transform.position == NPCCheckpoints.transform.Find($"Checkpoint{randomCheckpointNumGenerator}")
                 .transform.position)
                 {
@@ -127,6 +131,7 @@ public class NPCManager : MonoBehaviour
             if (isGoingtoCashier && npc.transform.position == NPCCheckpoints.transform.Find("CheckPointCashier").
                 transform.position)
             {
+                animator.SetBool("is_waiting", true);
                 if (!hasGeneratedRandomNum)
                 {
                     GenerateNPCPayment();
@@ -202,6 +207,7 @@ public class NPCManager : MonoBehaviour
             //Debug.Log(randomCheckpointNumGenerator);
             if (randomCheckpointNumGenerator != 5)
             {
+                animator.SetBool("is_waiting", true);
                 //Debug.Log("Pasok");
                 randomShelfPlatformChecker = Random.Range(1, 4);
                 Debug.Log(randomShelfPlatformChecker);
@@ -233,6 +239,7 @@ public class NPCManager : MonoBehaviour
                 }
                  
             }
+            animator.SetBool("is_waiting", false);
             randomCheckpointNumGenerator = Random.Range(1, 20);
         }
         StopAllCoroutines();
