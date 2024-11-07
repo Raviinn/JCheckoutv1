@@ -2689,7 +2689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightSource: {fileID: 705507994}
   EnvLightSources: {fileID: 1559540061}
-  rotationInterval: 10
+  rotationInterval: 60
   isEndOfDay: 0
   noMoreCustomersTxt: {fileID: 563691594}
 --- !u!114 &707376042 stripped
